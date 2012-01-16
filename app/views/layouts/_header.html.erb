@@ -1,24 +1,21 @@
 <header>
-
+  <%= image_tag("logo.png", :alt => "TMLS Intranet") %>
 </header>
 <nav>
   <ul>
-    <li><a href="#">Home</a></li>
-	<li><a href="#">Patients</a>
+    <li><%= link_to "Home", root_path %></li>
+
+	<li><%= link_to "Factories" %>
       <ul>
-	    <li><a href="#">Your Details</a></li>
-	    <li><a href="#">Your Admissions History</a></li>
-      </ul>
-	    </li>
-	    <li><a href="#">Hospitals</a>
+	    <li><%= link_to "List Factories", factories_path %></li>
+	    <li><%= link_to "New Factory", new_factory_path %></li>
+      </ul></li>
+
+	<li><%= link_to "Customers" %>
       <ul>
-	    <li><a href="#">Find Hospitals</a></li>
-      </ul>
-	</li>
-	<li><a href="#">Treatments</a>
-      <ul>
-	    <li><a href="#">Your Treatments History</a></li>
-      </ul>
-    </li>
+	    <li><%= link_to "List Customers", customers_path %></li>
+	    <li><%= link_to "New Customer", new_customer_path %></li>
+      </ul></li>
+
   </ul>
 </nav>

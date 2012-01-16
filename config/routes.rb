@@ -1,5 +1,6 @@
 TMLS::Application.routes.draw do
-  get "pages/index"
+resources :factories
+resources :customers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
