@@ -4,40 +4,41 @@
   <tr>
     <th rowspan="2">Name</th>
     <th rowspan="2">Country</th>
-    <th rowspan="2">Contact Details</th>
     <th colspan="2">Terms</th>
     <th colspan="3">Orders Summary</th>
+    <th rowspan="2">Details</th>
   </tr>
   <tr>
     <th>Discount</th>
     <th>Returns</th>
-    <th class="showhim">SH<div class= "showme">Orders shipped</div></th>
-    <th class="showhim">PS<div class= "showme">Orders part shipped</div></th>
-    <th class="showhim">PR<div class= "showme">Orders in production</div></th>
+    <th>Shipped</th>
+    <th>Part Shipped</th>
+    <th>In Production</th>
   </tr>
     <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.name %></td>
     <td><%= customer.country %></td>
-    <td class="showhim">Contact
-    <div class="showme">
-        <p><strong><%= customer.name %></strong></p>
-        <p><%= customer.contact %></p>
-        <p><%= customer.address1 %><br />
-           <%= customer.address2 %><br />
-           <%= customer.city %><br />
-           <%= customer.country %><br />
-           <%= customer.postcode %><br />
-           <%= customer.email %><br />
-           <%= customer.telephone %></p>
-        <p><%= link_to "edit", edit_customer_path(customer) %> |
-        <%= link_to 'delete', customer, confirm: customer.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
-        </div>
     <td><%= customer.discount %></td>
     <td><%= customer.returns %></td>
     <td></td>
     <td></td>
     <td></td>
+    <td class="showhim">Details
+        <div class="showme">
+            <p><strong><%= customer.name %></strong></p>
+            <p><%= customer.contact %></p>
+            <p><%= customer.address1 %><br />
+            <%= customer.address2 %><br />
+            <%= customer.city %><br />
+            <%= customer.country %><br />
+            <%= customer.postcode %><br />
+            <%= customer.email %><br />
+            <%= customer.telephone %></p>
+            <p><%= link_to "edit", edit_customer_path(customer) %> |
+            <%= link_to 'delete', customer, confirm: customer.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
+        </div>
+    </td>
   </tr>
     <% end %>
 </table>

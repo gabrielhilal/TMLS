@@ -9,9 +9,7 @@ body {
 	margin:0 auto;
     padding: 5px;
     width:810px;
-    -moz-border-radius:    10px;
-    -webkit-border-radius: 10px;
-    border-radius:         10px;
+    border-radius: 10px;
 	}
 
 /* Header*/
@@ -38,7 +36,7 @@ nav li {
 nav li a {
     display:block;
     border: 1px solid #000000;
-    color:#000000;
+    color: #000000;
 	font-size:1.2em; 
 	margin:1px; 
 	padding:5px 20px 5px 20px;
@@ -47,7 +45,6 @@ nav li a {
 nav li a:hover {
 	background: #000000;
     border: 1px solid #000000;
-    border-bottom-color: #000000;
     color: #ffffff;
 	text-decoration:none;
 	}
@@ -60,7 +57,6 @@ nav li:hover ul{
 	display:block;
 	background: #ffffff;
     border: 1px solid #000000;
-    border-bottom-color: #000000;
     color: #000000;
 	text-decoration:none;
 	}
@@ -88,9 +84,7 @@ section {
     border: 2px solid #000000;
     text-align: justify;
     padding: 10px;
-    -moz-border-radius:    10px;
-    -webkit-border-radius: 10px;
-    border-radius:         10px;
+    border-radius: 10px;
 	}
 section h1 {
 	font-size:2.5em;
@@ -135,6 +129,7 @@ table {
 th {
     background: #cccccc;
     border: 1px solid #000000;
+    text-align: center;
     }
 
 /* flash and errors */
@@ -169,7 +164,5 @@ th {
     background: #999999;
     width: auto;
     padding: 0 5px;
-    -moz-border-radius:    10px;
-    -webkit-border-radius: 10px;
-    border-radius:         10px;
+    border-radius: 10px;
 	}
