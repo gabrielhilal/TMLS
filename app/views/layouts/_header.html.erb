@@ -8,18 +8,17 @@
     <% else %>
     <li><%= link_to "Home", root_path %></li>
 
-	<li><%= link_to "Factories" %>
+	<li><%= link_to "Factories", factories_path  %>
       <ul>
-	    <li><%= link_to "List Factories", factories_path %></li>
 	    <li><%= link_to "New Factory", new_factory_path %></li>
-      </ul></li>
+      </ul>
+    </li>
 
-	<li><%= link_to "Customers" %>
+	<li><%= link_to "Customers", customers_path %>
       <ul>
-	    <li><%= link_to "List Customers", customers_path %></li>
 	    <li><%= link_to "New Customer", new_customer_path %></li>
-      </ul></li>
-
+      </ul>
+    </li>
 
     <li class="align_right"><%= link_to "Logout", logout_path %>
     <% end %>

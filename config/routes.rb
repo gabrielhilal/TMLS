@@ -57,7 +57,7 @@ match '/logout', :to => 'sessions#destroy'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'Pages#index'
+  root :to => 'Users#show'
 
   # See how all your routes lay out with "rake routes"
 

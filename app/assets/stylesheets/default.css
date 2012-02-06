@@ -142,6 +142,12 @@ th {
     border-color:#c6d880;
     font-size:2em;
     }
+.error {
+    background:#cccccc;
+    color:#ff3333;
+    border-color:#ff3333;
+    font-size:2em;
+    }
 .field_with_errors {
     background-color: #ff3333;
     display: table;
