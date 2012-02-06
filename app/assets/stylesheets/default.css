@@ -16,7 +16,10 @@ body {
 header {
 	height:95px;
     margin: 0 1px;
-}
+    }
+.align_right {
+    float: right;
+    }
 
 /*menu */
 nav {

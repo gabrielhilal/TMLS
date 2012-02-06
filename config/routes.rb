@@ -1,6 +1,12 @@
 TMLS::Application.routes.draw do
 resources :factories
 resources :customers
+resources :users
+resources :sessions
+
+match '/login',  :to => 'sessions#new'
+match '/logout', :to => 'sessions#destroy'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

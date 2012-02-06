@@ -13,8 +13,6 @@ class CreateFactories < ActiveRecord::Migration
 
       t.timestamps
 
-    add_index :factories, :name, :unique => true
-    add_index :factories, :email, :unique => true
     end
 
   end

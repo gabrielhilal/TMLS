@@ -3,6 +3,9 @@
 </header>
 <nav>
   <ul>
+    <% if current_user.nil? %>
+
+    <% else %>
     <li><%= link_to "Home", root_path %></li>
 
 	<li><%= link_to "Factories" %>
@@ -17,5 +20,8 @@
 	    <li><%= link_to "New Customer", new_customer_path %></li>
       </ul></li>
 
+
+    <li class="align_right"><%= link_to "Logout", logout_path %>
+    <% end %>
   </ul>
 </nav>
