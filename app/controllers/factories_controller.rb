@@ -1,4 +1,5 @@
 class FactoriesController < ApplicationController
+
   def index
     @title = "Factories"
     @factories = Factory.all
