@@ -13,7 +13,17 @@ protected
 
   def authorize
     unless User.find_by_id(session[:user_id])
+      flash[:error] = "Please login first."
       redirect_to login_path
+    end
   end
+
+  def admin
+    unless current_user.admin?
+      flash[:error] = "Authorisation is required."
+      redirect_to root_path
+    end
+  end
+
 end
-end
+

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :admin, only: [:new, :create ]
 
   def show
     if current_user.nil?
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "User " + @user.name + " created!"
-      redirect_to root_url
+      redirect_to users_url
     else
       render "new"
     end

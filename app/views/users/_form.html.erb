@@ -6,7 +6,11 @@
   </div>
   <div class="field">
     <%= f.label :department %><br />
-    <%= f.text_field :department %>
+        <%= f.radio_button :department, "Commercial" %>
+        <%= f.label :commercial %><br />
+        <%= f.radio_button :department, "Accounts" %>
+        <%= f.label :accounts %>
+
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -19,6 +23,10 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box :admin %>
   </div>
 <div class="actions">
     <%= f.submit %>

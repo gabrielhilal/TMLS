@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :department
       t.string :name
+      t.boolean :admin
 
       t.timestamps
     end

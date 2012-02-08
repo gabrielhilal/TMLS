@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120202181007) do
     t.string   "password_digest"
     t.string   "department"
     t.string   "name"
+    t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
