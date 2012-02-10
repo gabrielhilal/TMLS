@@ -1,1 +1,7 @@
-<h1>Welcome <%= current_user.name %></h1>
+<h1>Home</h1>
+<div class = "align_right">
+  <%= link_to "Change your password ", edit_user_path %>
+<% if current_user.admin? %>
+  <%= link_to "| Manage Users", users_path %>
+<% end %>
+</div>

@@ -17,6 +17,9 @@
   </tr>
     <% @customers.each do |customer| %>
   <tr>
+    <td colspan="8">&nbsp;</td>
+  </tr>
+  <tr>
     <td><%= customer.name %></td>
     <td><%= customer.country %></td>
     <td><%= customer.discount %></td>
@@ -33,14 +36,38 @@
             <%= customer.city %><br />
             <%= customer.country %><br />
             <%= customer.postcode %><br />
-            <%= customer.email %><br />
+            <%= mail_to customer.email %><br />
             <%= customer.telephone %></p>
             <p><%= link_to "edit", edit_customer_path(customer) %> |
             <%= link_to 'delete', customer, confirm: customer.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
         </div>
     </td>
   </tr>
-    <% end %>
+  <tr>
+    <td class="align_right">-</td>
+    <td colspan="7"><%= link_to "new consignee", new_customer_consignee_path(customer) %></td>
+  </tr>
+  <% customer.consignees.each do |consignee| %>
+  <tr>
+    <td class="align_right">-</td>
+    <td colspan="3"><%= consignee.name %></td>
+    <td class="showhim">Details
+        <div class="showme">
+            <p><strong><%= consignee.name %></strong></p>
+            <p><%= consignee.address1 %><br />
+            <%= consignee.address2 %><br />
+            <%= consignee.city %><br />
+            <%= consignee.country %><br />
+            <%= consignee.postcode %><br />
+            <p><%= link_to "edit", edit_customer_consignee_path(customer, consignee) %> |
+            <%= link_to 'delete', customer_consignee_path(customer, consignee), confirm: consignee.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
+        </div>
+    </td>
+  </tr>
+
+  <% end %>
+
+  <% end %>
 </table>
 
 

@@ -6,7 +6,7 @@
     <% if current_user.nil? %>
 
     <% else %>
-    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Home", current_user %></li>
 
 	<li><%= link_to "Factories", factories_path  %>
       <ul>

@@ -20,7 +20,6 @@ class CustomersController < ApplicationController
     end
   end
 
-
   def edit
     @title = "Edit Customer"
     @customer = Customer.find(params[:id])
@@ -29,7 +28,7 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update_attributes(params[:customer])
-      flash[:success] = "Factory details updated!"
+      flash[:success] = "Customer details updated!"
       redirect_to customers_path
     else
       @title = "Edit Customer"

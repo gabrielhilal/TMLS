@@ -20,8 +20,8 @@ protected
 
   def admin
     unless current_user.admin?
-      flash[:error] = "Authorisation is required."
-      redirect_to root_path
+      flash[:error] = "Authorisation is required to access this content."
+      redirect_to current_user
     end
   end
 

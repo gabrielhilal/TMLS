@@ -1,7 +1,13 @@
 TMLS::Application.routes.draw do
+
 resources :factories
-resources :customers
+
+resources :customers do
+  resources :consignees
+end
+
 resources :users
+
 resources :sessions
 
 match '/login',  :to => 'sessions#new'
@@ -57,7 +63,7 @@ match '/logout', :to => 'sessions#destroy'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'Users#show'
+  root :to => 'Sessions#new'
 
   # See how all your routes lay out with "rake routes"
 

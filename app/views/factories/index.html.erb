@@ -28,7 +28,7 @@
             <%= factory.city %><br />
             <%= factory.country %><br />
             <%= factory.postcode %><br />
-            <%= factory.email %><br />
+            <%= mail_to factory.email %><br />
             <%= factory.telephone %></p>
             <p><%= link_to "edit", edit_factory_path(factory) %> |
             <%= link_to 'delete', factory, confirm: factory.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
