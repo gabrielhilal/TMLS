@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  colour: MyString
+  quantity: 1
+  customer_price: 9.99
+  factory_price: 9.99
+  mda: MyString
+  line_number: MyString
+  customer_style: MyString
+  lining: MyString
+  sock: MyString
+  binding: MyString
+  metals: MyString
+  sole: MyString
+  heel: MyString
+
+two:
+  colour: MyString
+  quantity: 1
+  customer_price: 9.99
+  factory_price: 9.99
+  mda: MyString
+  line_number: MyString
+  customer_style: MyString
+  lining: MyString
+  sock: MyString
+  binding: MyString
+  metals: MyString
+  sole: MyString
+  heel: MyString

@@ -20,6 +20,12 @@
       </ul>
     </li>
 
+	<li><%= link_to "Orders", orders_path %>
+      <ul>
+	    <li><%= link_to "New Order", new_order_path %></li>
+      </ul>
+    </li>
+
     <li class="align_right"><%= link_to "Logout", logout_path %>
     <% end %>
   </ul>

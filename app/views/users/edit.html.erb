@@ -1,6 +1,7 @@
-<h1>Edit User</h1>
 <% if @user == current_user %>
+    <h1>New Password</h1>
     <%= render 'password' %>
 <% else %>
-<%= render 'form' %>
+    <h1>Edit User <%= @user.name %> </h1>
+    <%= render 'form' %>
 <% end %>

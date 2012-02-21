@@ -39,9 +39,15 @@ class FactoriesController < ApplicationController
   end
 
   def destroy
-    Factory.find(params[:id]).destroy
-    flash[:success] = "Factory deleted!"
-    redirect_to factories_path
+    @factory = Factory.find(params[:id])
+    if @factory.orders.count == 0
+      @factory.destroy
+      flash[:success] = "Factory deleted!"
+      redirect_to factories_path
+    else
+      flash[:error] = "Factory can't be deleted, there are orders related to this factory"
+      redirect_to factories_path
+    end
   end
 
 end

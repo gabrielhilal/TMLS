@@ -1,5 +1,7 @@
 class Factory < ActiveRecord::Base
+  has_many :orders
   attr_accessible :address1, :address2, :city, :contact, :country, :email, :name, :postcode, :telephone
+  default_scope :order => "country, name"
 
   #email_regex reference: Ruby on Rails Tutorial-Learn Rails by Example (Michael Hartl)-http://ruby.railstutorial.org/
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

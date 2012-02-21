@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  factory_date: 2012-02-20
+  customer_date: MyString
+  consignee_id: 1
+
+two:
+  factory_date: 2012-02-20
+  customer_date: MyString
+  consignee_id: 1

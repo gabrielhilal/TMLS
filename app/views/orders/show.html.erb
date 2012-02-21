@@ -1,0 +1,79 @@
+<div id="content1" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <h3>Order: <strong><%= @order.number %></strong></h3>
+  <div>Comments:</div>
+  <div class="comments"><%= simple_format(@order.comments) %></div>
+</div>
+<div id="content2">
+  <p><%= link_to "Edit Order", edit_order_path %> |
+    <%= link_to 'Delete Order', @order, confirm: 'Order ' + @order.number + ' will be deleted! Are you sure you want to delete it?', method: :delete %>
+  </p>
+  <p>Date: <strong><%= @order.date.to_formatted_s(:rfc822) %></strong></p>
+  <p>Customer: <strong><%= @order.customer.name %></strong></p>
+  <p>Factory: <strong><%= @order.factory.name %></strong></p>
+
+<% if @order.currency == 'usd' %>
+   <p>Currency: <strong>$ USD</strong></p>
+<% elsif @order.currency == 'gbp' %>
+   <p>Currency: <strong>£ GBP</strong></p>
+<% else @order.currency == 'eur' %>
+   <p>Currency: <strong>€ EUR</strong></p>
+<% end %>
+
+</div>
+<div id="content3">
+<% i = 1 %>
+<% @drops.each do |drop| %>
+<% date = (drop.customer_date - drop.factory_date).to_i %>
+  <div class="drop_line1">
+    <p><strong>DROP <%= i  %></strong></p>
+  </div>
+  <div class="drop_line2">
+    <p>Consignee: <strong>testetete |</strong>
+      Margin: <strong><%= date %> days</strong>
+    </p>
+  </div>
+  <div class="drop_line2">
+    <p>Factory Date: <strong><%= drop.factory_date.to_formatted_s(:rfc822) %> | </strong>
+      Customer Date: <strong><%= drop.customer_date.to_formatted_s(:rfc822) %></strong>
+    </p>
+  </div>
+  <div class="drop_line3">
+    <p>
+      <%= link_to "edit", edit_order_drop_path(@order, drop) %> |
+      <%= link_to "delete", order_drop_path(@order, drop), confirm: 'Drop will be deleted! Are you sure you want to delete it?', method: :delete %>
+    </p>
+  </div>
+
+  <div id="drop">
+    <table>
+      <tr>
+        <th>Colour</th>
+        <th>Quantity</th>
+        <th>Factory Price</th>
+        <th>Customer Price</th>
+        <th>Customer Style</th>
+        <th>Picture</th>
+        <td></td>
+      </tr>
+      <tr>
+      <% drop.items.each do |item| %>
+        <td><%= item.colour %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.factory_price %></td>
+        <td><%= item.customer_price %></td>
+        <td><%= item.customer_style %></td>
+        <td>Picture</td>
+        <td><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %> |
+              <%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %>
+              </td>
+      </tr>
+        <% end %>
+      <tr>
+        <td><%= link_to "New Item", new_order_drop_item_path(@order, drop) %></td>
+      </tr>
+    </table>
+  </div>
+<% i += 1 %>
+<% end %>
+  <div class="drop_line1"><%= link_to "New Drop", new_order_drop_path(@order) %></div>
+</div>

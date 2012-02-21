@@ -1,0 +1,14 @@
+<%= form_for([@order, @drop]) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :factory_date, "Factory Date" %><br />
+    <%= f.text_field :factory_date %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_date, "Customer Date" %><br />
+    <%= f.text_field :customer_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

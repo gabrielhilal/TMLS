@@ -1,11 +1,5 @@
 class ConsigneesController < ApplicationController
 
-  def index
-    @title = "Consignees"
-    @customer = Customer.find(params[:customer_id])
-    @consignees = @customer.consignees
-  end
-
   def new
     @title = "New Consignee"
     @customer = Customer.find(params[:customer_id])
@@ -25,6 +19,7 @@ class ConsigneesController < ApplicationController
   end
 
   def edit
+    @title = "Edit Consignee"
     @customer = Customer.find(params[:customer_id])
     @consignee = @customer.consignees.find(params[:id])
   end

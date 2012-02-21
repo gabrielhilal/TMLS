@@ -10,6 +10,12 @@ resources :users
 
 resources :sessions
 
+resources :orders do
+ resources :drops do
+   resources :items
+ end
+end
+
 match '/login',  :to => 'sessions#new'
 match '/logout', :to => 'sessions#destroy'
 

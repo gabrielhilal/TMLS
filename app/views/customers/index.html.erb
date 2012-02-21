@@ -4,9 +4,9 @@
   <tr>
     <th rowspan="2">Name</th>
     <th rowspan="2">Country</th>
+    <th rowspan="2">Details</th>
     <th colspan="2">Terms</th>
     <th colspan="3">Orders Summary</th>
-    <th rowspan="2">Details</th>
   </tr>
   <tr>
     <th>Discount</th>
@@ -20,14 +20,9 @@
     <td colspan="8">&nbsp;</td>
   </tr>
   <tr>
-    <td><%= customer.name %></td>
-    <td><%= customer.country %></td>
-    <td><%= customer.discount %></td>
-    <td><%= customer.returns %></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="showhim">Details
+    <td><strong><%= customer.name %></strong></td>
+    <td><strong><%= customer.country %></strong></td>
+    <td class="showhim"><strong>Details</strong>
         <div class="showme">
             <p><strong><%= customer.name %></strong></p>
             <p><%= customer.contact %></p>
@@ -35,22 +30,24 @@
             <%= customer.address2 %><br />
             <%= customer.city %><br />
             <%= customer.country %><br />
-            <%= customer.postcode %><br />
+            <%= customer.postcode %><br /><br />
             <%= mail_to customer.email %><br />
             <%= customer.telephone %></p>
             <p><%= link_to "edit", edit_customer_path(customer) %> |
             <%= link_to 'delete', customer, confirm: customer.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
         </div>
     </td>
+    <td><strong><%= customer.discount %></strong></td>
+    <td><strong><%= customer.returns %></strong></td>
+    <td><strong> </strong></td>
+    <td><strong> </strong></td>
+    <td><strong> </strong></td>
   </tr>
-  <tr>
-    <td class="align_right">-</td>
-    <td colspan="7"><%= link_to "new consignee", new_customer_consignee_path(customer) %></td>
-  </tr>
+
   <% customer.consignees.each do |consignee| %>
   <tr>
-    <td class="align_right">-</td>
-    <td colspan="3"><%= consignee.name %></td>
+    <td class="space">-<%= consignee.name %></td>
+    <td><%= consignee.country %></td>
     <td class="showhim">Details
         <div class="showme">
             <p><strong><%= consignee.name %></strong></p>
@@ -66,7 +63,10 @@
   </tr>
 
   <% end %>
-
+  <tr>
+    <td class="space">-<%= link_to "new consignee", new_customer_consignee_path(customer) %></td>
+    <td colspan="7"></td>
+  </tr>
   <% end %>
 </table>
 

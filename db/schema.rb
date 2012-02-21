@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208195510) do
+ActiveRecord::Schema.define(:version => 20120221144651) do
 
   create_table "consignees", :force => true do |t|
     t.string   "name"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20120208195510) do
     t.string   "country"
     t.string   "postcode"
     t.integer  "customer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "customers", :force => true do |t|
@@ -37,8 +37,17 @@ ActiveRecord::Schema.define(:version => 20120208195510) do
     t.string   "telephone"
     t.decimal  "discount",   :precision => 8, :scale => 2
     t.decimal  "returns",    :precision => 8, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "drops", :force => true do |t|
+    t.date     "factory_date"
+    t.date     "customer_date"
+    t.integer  "consignee_id"
+    t.integer  "order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "factories", :force => true do |t|
@@ -51,8 +60,38 @@ ActiveRecord::Schema.define(:version => 20120208195510) do
     t.string   "telephone"
     t.string   "email"
     t.string   "contact"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "colour"
+    t.integer  "quantity"
+    t.decimal  "customer_price", :precision => 8, :scale => 2
+    t.decimal  "factory_price",  :precision => 8, :scale => 2
+    t.string   "mda"
+    t.string   "line_number"
+    t.string   "customer_style"
+    t.string   "lining"
+    t.string   "sock"
+    t.string   "binding"
+    t.string   "metals"
+    t.string   "sole"
+    t.string   "heel"
+    t.integer  "drop_id"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.date     "date"
+    t.string   "currency"
+    t.string   "comments"
+    t.integer  "customer_id"
+    t.integer  "factory_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -61,8 +100,8 @@ ActiveRecord::Schema.define(:version => 20120208195510) do
     t.string   "department"
     t.string   "name"
     t.boolean  "admin"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
