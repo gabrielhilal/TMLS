@@ -118,29 +118,29 @@ section h3 {
 #content2 {
     font-size: 110%;
     float: right;
-    border-left: 2px solid #000000;
+    border-left: 1px solid #aaaaaa;
     width: 200px;
     padding-left: 10px;
     }
 #content3 {
     clear: both;
+    border-top: 1px solid #aaaaaa;
     }
 .drop_line1 {
     float: left;
-    padding: 0 10px;
-    margin-top: 20px;
+    padding: 10px 10px 0;;
+    margin-top: 10px;
     }
 .drop_line2 {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid #000000;
-    margin-top: 20px;
+    float: right;
+    padding: 0 40px;
+    margin-top: 10px;
     }
 .drop_line3 {
     float: right;
-    padding: 0 10px;
-    border-left: 1px solid #000000;
-    margin-top: 20px;
+    padding: 10px 10px 0;
+    margin-top: 10px;
+    border-left: 1px solid #bbbbbb;
     }
 #drop {
     clear: both;
@@ -148,7 +148,7 @@ section h3 {
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background: #dadada;
+    background: #eeeeee;
     }
 #form_left {
     float: left;

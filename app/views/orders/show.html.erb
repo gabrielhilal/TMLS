@@ -27,23 +27,23 @@
   <div class="drop_line1">
     <p><strong>DROP <%= i  %></strong></p>
   </div>
+      <div class="drop_line3">
+        <p>
+          <%= link_to "edit", edit_order_drop_path(@order, drop) %> |
+          <%= link_to "delete", order_drop_path(@order, drop), confirm: 'Drop will be deleted! Are you sure you want to delete it?', method: :delete %>
+        </p>
+      </div>
   <div class="drop_line2">
-    <p>Consignee: <strong>testetete |</strong>
+    <p>Consignee: <strong>testetete</strong><br />
       Margin: <strong><%= date %> days</strong>
     </p>
   </div>
+
   <div class="drop_line2">
-    <p>Factory Date: <strong><%= drop.factory_date.to_formatted_s(:rfc822) %> | </strong>
+    <p>Factory Date: <strong><%= drop.factory_date.to_formatted_s(:rfc822) %> <br /> </strong>
       Customer Date: <strong><%= drop.customer_date.to_formatted_s(:rfc822) %></strong>
     </p>
   </div>
-  <div class="drop_line3">
-    <p>
-      <%= link_to "edit", edit_order_drop_path(@order, drop) %> |
-      <%= link_to "delete", order_drop_path(@order, drop), confirm: 'Drop will be deleted! Are you sure you want to delete it?', method: :delete %>
-    </p>
-  </div>
-
   <div id="drop">
     <table>
       <tr>
