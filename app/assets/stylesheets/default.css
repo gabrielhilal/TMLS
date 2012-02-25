@@ -232,12 +232,12 @@ td {
     display: none;
     }
 .showhim:hover .showme{
-    display: inherit;
+    display: block;
     position: absolute;
     margin-left: 35px;
     margin-top: -15px;
     background: #999999;
     width: auto;
-    padding: 0 5px;
+    padding: 5px;
     border-radius: 10px;
 	}

@@ -3,7 +3,7 @@ class CreateStyles < ActiveRecord::Migration
     create_table :styles do |t|
       t.string :style
       t.string :construction
-      t.string :picture
+      t.string :image
 
       t.timestamps
     end

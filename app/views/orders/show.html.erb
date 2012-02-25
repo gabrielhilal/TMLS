@@ -52,8 +52,7 @@
         <th>Factory Price</th>
         <th>Customer Price</th>
         <th>Customer Style</th>
-        <th>Picture</th>
-        <td></td>
+        <th>Image</th>
       </tr>
       <tr>
       <% drop.items.each do |item| %>
@@ -62,10 +61,23 @@
         <td><%= item.factory_price %></td>
         <td><%= item.customer_price %></td>
         <td><%= item.customer_style %></td>
-        <td>Picture</td>
-        <td><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %> |
-              <%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %>
-              </td>
+        <td class="showhim"><%= image_tag item.style.image_url(:thumb).to_s %>
+          <div class="showme">
+            <p>
+              <strong>Summary:</strong><br />
+              Lining: <%= item.lining %><br />
+              Sock: <%= item.sock %><br />
+              Binding: <%= item.binding %><br />
+              Metals: <%= item.metals %><br />
+              Sole: <%= item.sole %><br />
+              Heel: <%= item.heel %><br />
+            </p>
+            <p><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %> |
+             <%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %></p>
+          </div>
+
+
+        </td>
       </tr>
         <% end %>
       <tr>

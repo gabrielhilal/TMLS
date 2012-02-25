@@ -2,7 +2,10 @@
   <%= render 'shared/error_messages', :object => f.object %>
 <div id="form_left">
 
-
+  <div class="field">
+      <%= f.label :style %><br />
+      <%= f.collection_select(:style_id, Style.all, :id, :style, {:include_blank => 'Select Style'} ) %>
+  </div>
   <div class="field">
     <%= f.label :colour %><br />
     <%= f.text_field :colour %>

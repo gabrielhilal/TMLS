@@ -1,0 +1,28 @@
+<h1>Styles</h1>
+
+<table>
+  <tr>
+    <th>Picture</th>
+    <th>Style</th>
+    <th>Construction</th>
+    <td></td>
+  </tr>
+    <% @styles.each do |style| %>
+  <tr>
+    <td class="showhim"><%= image_tag style.image_url(:thumb).to_s %>
+      <div class="showme"><%= image_tag style.image_url.to_s %></div>
+    </td>
+    <td><%= style.style %></td>
+    <td><%= style.construction %></td>
+    <td><%= link_to "edit", edit_style_path(style) %> |
+        <%= link_to 'delete', style, confirm: 'Style ' + style.style + "|" + style.construction  + ' will be deleted! Are you sure you want to delete it?', method: :delete %>
+    </td>
+  </tr>
+    <% end %>
+</table>
+
+
+
+
+
+

@@ -10,8 +10,9 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :contact
       t.string :email
       t.string :telephone
-      t.decimal :discount, :precision => 8, :scale => 2
-      t.decimal :returns, :precision => 8, :scale => 2
+      t.string :terms
+      t.decimal :discount, :precision => 7, :scale => 2
+      t.decimal :returns, :precision => 7, :scale => 2
 
       t.timestamps
     end

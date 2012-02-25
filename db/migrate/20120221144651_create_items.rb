@@ -3,8 +3,8 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :colour
       t.integer :quantity
-      t.decimal :customer_price, :precision => 8, :scale => 2
-      t.decimal :factory_price, :precision => 8, :scale => 2
+      t.decimal :customer_price, :precision => 7, :scale => 2
+      t.decimal :factory_price, :precision => 7, :scale => 2
       t.string :mda
       t.string :line_number
       t.string :customer_style

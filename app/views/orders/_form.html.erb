@@ -6,7 +6,7 @@
   </div>
   <div class="field">
     <%= f.label :factory %><br />
-    <%= f.select :factory_id, Factory.all.collect {|factory| [ factory.name, factory.id ] }, {:include_blank => 'Select Factory'} %>
+    <%= f.collection_select(:factory_id, Factory.all, :id, :name , {:include_blank => 'Select Factory'} ) %>
   </div>
   <div class="field">
     <%= f.label :number %><br />

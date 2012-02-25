@@ -2,19 +2,21 @@ TMLS::Application.routes.draw do
 
 resources :factories
 
+resources :styles
+
 resources :customers do
   resources :consignees
 end
-
-resources :users
-
-resources :sessions
 
 resources :orders do
  resources :drops do
    resources :items
  end
 end
+
+resources :users
+
+resources :sessions
 
 match '/login',  :to => 'sessions#new'
 match '/logout', :to => 'sessions#destroy'

@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.string   "contact"
     t.string   "email"
     t.string   "telephone"
-    t.decimal  "discount",   :precision => 8, :scale => 2
-    t.decimal  "returns",    :precision => 8, :scale => 2
+    t.string   "terms"
+    t.decimal  "discount",   :precision => 7, :scale => 2
+    t.decimal  "returns",    :precision => 7, :scale => 2
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
   end
@@ -67,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
   create_table "items", :force => true do |t|
     t.string   "colour"
     t.integer  "quantity"
-    t.decimal  "customer_price", :precision => 8, :scale => 2
-    t.decimal  "factory_price",  :precision => 8, :scale => 2
+    t.decimal  "customer_price", :precision => 7, :scale => 2
+    t.decimal  "factory_price",  :precision => 7, :scale => 2
     t.string   "mda"
     t.string   "line_number"
     t.string   "customer_style"
@@ -98,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
   create_table "styles", :force => true do |t|
     t.string   "style"
     t.string   "construction"
-    t.string   "picture"
+    t.string   "image"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
