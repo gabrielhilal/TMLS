@@ -3,8 +3,8 @@ class CreateDrops < ActiveRecord::Migration
     create_table :drops do |t|
       t.date :factory_date
       t.date :customer_date
-      t.integer :consignee_id
       t.integer :order_id
+      t.integer :consignee_id
 
       t.timestamps
     end

@@ -12,7 +12,6 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :telephone
       t.string :terms
       t.decimal :discount, :precision => 7, :scale => 2
-      t.decimal :returns, :precision => 7, :scale => 2
 
       t.timestamps
     end

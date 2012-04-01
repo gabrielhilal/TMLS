@@ -7,6 +7,12 @@ class CreateOrders < ActiveRecord::Migration
       t.string :comments
       t.integer :customer_id
       t.integer :factory_id
+      t.decimal :finance, :precision => 7, :scale => 2
+      t.decimal :returns, :precision => 7, :scale => 2
+      t.boolean :acknowledgement
+      t.date    :acknowledgementdate
+      t.string  :edited
+      t.date    :edited_date
 
       t.timestamps
     end

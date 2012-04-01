@@ -1,4 +1,6 @@
 class ConsigneesController < ApplicationController
+  before_filter :factory
+  before_filter :commercial
 
   def new
     @title = "New Consignee"
@@ -24,7 +26,7 @@ class ConsigneesController < ApplicationController
     @consignee = @customer.consignees.find(params[:id])
   end
 
-    def update
+  def update
     @customer = Customer.find(params[:customer_id])
     @consignee = Consignee.find(params[:id])
     if @consignee.update_attributes(params[:consignee])
@@ -36,10 +38,16 @@ class ConsigneesController < ApplicationController
     end
   end
 
-    def destroy
-    Consignee.find(params[:id]).destroy
-    flash[:success] = "Consignee deleted!"
-    redirect_to customers_path
+  def destroy
+    @consignee = Consignee.find(params[:id])
+    if @consignee.drops.count == 0
+      @consignee.destroy
+      flash[:success] = "Consignee deleted!"
+      redirect_to customers_path
+    else
+      flash[:error] = "Consignee can't be deleted, there are drops related to this consignee"
+      redirect_to customers_path
+    end
   end
 
 end

@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
-end
-helper_method :current_user
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
 
 protected
 
@@ -20,6 +20,20 @@ protected
 
   def admin
     unless current_user.admin?
+      flash[:error] = "Authorisation is required to access this content."
+      redirect_to current_user
+    end
+  end
+
+  def commercial
+    if current_user.department == "Commercial"
+      flash[:error] = "Authorisation is required to access this content."
+      redirect_to current_user
+    end
+  end
+
+  def factory
+    if current_user.department == "Factory"
       flash[:error] = "Authorisation is required to access this content."
       redirect_to current_user
     end

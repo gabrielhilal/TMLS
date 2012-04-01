@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @title = "Home"
     if current_user.nil?
       redirect_to login_path
+    elsif current_user.department == "Factory"
+      factory = current_user.factory
+      @orders = factory.orders
+      @orders = @orders.find_all_by_acknowledgement(false)
     end
   end
 
@@ -31,7 +35,11 @@ class UsersController < ApplicationController
 
   def edit
     @title = "Edit User"
-    @user = User.find(params[:id])
+    if current_user.admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   def update

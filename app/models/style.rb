@@ -2,11 +2,24 @@ class Style < ActiveRecord::Base
   has_many :items
   attr_accessible :image, :style, :construction
   mount_uploader :image, ImageUploader
+  default_scope :order => "style, construction"
 
-  #validates :picture,          :presence => true
+
   validates :style,            :presence => true,
-                               :uniqueness => {:scope => :construction}
-  validates :construction,     :presence => true,
-                               :uniqueness => {:scope => :style}
+                               :uniqueness => {:scope => :construction, :message => "/ Construction combination has already been taken"}
+  validates :construction,     :presence => true
+  validates :image,            :presence => true
+
+  def dropdown
+      "#{style} | #{construction}"
+  end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ["style LIKE ? OR construction LIKE ?", "%#{search}%", "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 
 end

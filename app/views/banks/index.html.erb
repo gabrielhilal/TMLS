@@ -1,0 +1,52 @@
+<h1>Banks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Notice</th>
+    <th>Account</th>
+    <th>Sort Code</th>
+    <th>IBAN</th>
+    <th>SWIFT</th>
+    <th>BIC</th>
+    <% unless current_user.department == "Commercial" %>
+    <td></td>
+    <td></td>
+    <% end %>
+  </tr>
+    <% @banks.each do |bank| %>
+  <tr>
+    <td><%= bank.name %></td>
+    <td class="showhim">Address
+        <div class="showme">
+          <%= simple_format(bank.address) %>
+        </div>
+    </td>
+    <td class="showhim">Address
+        <div class="showme">
+          <%= simple_format(bank.notice) %>
+        </div>
+    </td>
+    <td><%= bank.account %></td>
+    <td><%= bank.sort_code %></td>
+    <td><%= bank.iban %></td>
+    <td><%= bank.swift %></td>
+    <td><%= bank.bic %></td>
+    <% unless current_user.department == "Commercial" %>
+      <td><%= link_to "edit", edit_bank_path(bank) %></td>
+      <td><%= link_to 'delete', bank, confirm: bank.name + ' will be deleted! Are you sure you want to delete it?', method: :delete %></td>
+    <% end %>
+  </tr>
+    <% end %>
+</table>
+<% unless current_user.department == "Commercial" %>
+<p><%= link_to "New Bank", new_bank_path %></p>
+<% end %>
+
+
+
+
+
+
+

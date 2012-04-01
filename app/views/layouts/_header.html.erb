@@ -3,36 +3,62 @@
 </header>
 <nav>
   <ul>
-    <% if current_user.nil? %>
-
+    <% unless current_user.nil? %>
+    <% if current_user.department == "Factory" %>
+       <li><%= link_to "Home", current_user %></li>
+       <li><%= link_to "Orders", orders_path %>
+       <li class="align_right"><%= link_to "Logout", logout_path %>
     <% else %>
     <li><%= link_to "Home", current_user %></li>
 
 	<li><%= link_to "Factories", factories_path  %>
       <ul>
+        <li><%= link_to "List Factories", factories_path %></li>
+        <% unless current_user.department == "Commercial" %>
 	    <li><%= link_to "New Factory", new_factory_path %></li>
+        <% end %>
       </ul>
     </li>
 
 	<li><%= link_to "Customers", customers_path %>
       <ul>
+        <li><%= link_to "List Customers", customers_path %></li>
+        <% unless current_user.department == "Commercial" %>
 	    <li><%= link_to "New Customer", new_customer_path %></li>
+        <% end %>
       </ul>
     </li>
 
 	<li><%= link_to "Orders", orders_path %>
       <ul>
+        <li><%= link_to "List Orders", orders_path %></li>
 	    <li><%= link_to "New Order", new_order_path %></li>
       </ul>
     </li>
 
     <li><%= link_to "Styles", styles_path %>
       <ul>
-        <li><%= link_to "New style", new_style_path %></li>
+        <li><%= link_to "List Styles", styles_path %></li>
+        <li><%= link_to "New Style", new_style_path %></li>
       </ul>
     </li>
-
+    <li><%= link_to "Invoices", invoices_path %>
+      <ul>
+        <li><%= link_to "List Invoices", invoices_path %></li>
+      </ul>
+    </li>
+    <li><%= link_to "Banks", banks_path %>
+      <ul>
+        <li><%= link_to "List Banks", banks_path %></li>
+        <% unless current_user.department == "Commercial" %>
+        <li><%= link_to "New Bank", new_bank_path %></li>
+        <% end %>
+      </ul>
+    </li>
+    <li><%= link_to "Advanced Search", search_index_path %>
+    </li>
     <li class="align_right"><%= link_to "Logout", logout_path %>
+    <% end %>
     <% end %>
   </ul>
 </nav>

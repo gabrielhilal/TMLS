@@ -13,10 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require autocomplete-rails
 //= require_tree .
 
 $(function (){
     $('#order_date').datepicker();
     $('#drop_factory_date').datepicker();
     $('#drop_customer_date').datepicker();
+    $('#invoice_date').datepicker();
+});
+
+
+$(document).ready(function(e) {
+try {
+$("#item_style_id").msDropDown();
+} catch(e) {
+alert(e.message);
+}
 });

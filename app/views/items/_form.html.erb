@@ -1,11 +1,13 @@
 <%= form_for([ @order, @drop, @item]) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-<div id="form_left">
 
   <div class="field">
-      <%= f.label :style %><br />
-      <%= f.collection_select(:style_id, Style.all, :id, :style, {:include_blank => 'Select Style'} ) %>
+    <%= f.label :style, 'Style | Construction' %><br />
+    <%= f.select(:style_id, Style.all.map{ |p| [p.dropdown, p.id, :title => "#{p.image_url(:thumb)}"] }, {:include_blank => 'Select Style | Construction'}, class: "bigselect" ) %>
   </div>
+<div class="clear"></div>
+    <br />
+<div id="form_left">
   <div class="field">
     <%= f.label :colour %><br />
     <%= f.text_field :colour %>
@@ -19,12 +21,12 @@
     <%= f.text_field :quantity %>
   </div>
   <div class="field">
-    <%= f.label :customer_price %><br />
-    <%= f.text_field :customer_price %>
-  </div>
-  <div class="field">
     <%= f.label :factory_price %><br />
     <%= f.text_field :factory_price %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_price %><br />
+    <%= f.text_field :customer_price %>
   </div>
   <div class="field">
     <%= f.label :line_number %><br />
@@ -37,28 +39,36 @@
 </div>
 <div id="form_right">
   <div class="field">
-    <%= f.label :lining %><br />
-    <%= f.text_area :lining, :rows=>2, :cols=>70  %>
+    <%= f.label :upper %><br />
+    <%= f.text_area :upper, :rows=>2, :cols=>60  %>
   </div>
   <div class="field">
+      <%= f.label :lining %><br />
+      <%= f.text_area :lining, :rows=>2, :cols=>60  %>
+    </div>
+  <div class="field">
     <%= f.label :sock %><br />
-    <%= f.text_area :sock, :rows=>2, :cols=>70  %>
+    <%= f.text_area :sock, :rows=>2, :cols=>60  %>
   </div>
   <div class="field">
     <%= f.label :binding %><br />
-    <%= f.text_area :binding, :rows=>2, :cols=>70  %>
+    <%= f.text_area :binding, :rows=>2, :cols=>60  %>
   </div>
   <div class="field">
     <%= f.label :metals %><br />
-    <%= f.text_area :metals, :rows=>2, :cols=>70  %>
+    <%= f.text_area :metals, :rows=>2, :cols=>60  %>
   </div>
   <div class="field">
-    <%= f.label :sole %><br />
-    <%= f.text_area :sole, :rows=>2, :cols=>70  %>
+    <%= f.label :platform %><br />
+    <%= f.text_area :platform, :rows=>2, :cols=>60  %>
   </div>
   <div class="field">
     <%= f.label :heel %><br />
-    <%= f.text_area :heel,:rows=>2, :cols=>70  %>
+    <%= f.text_area :heel,:rows=>2, :cols=>60  %>
+  </div>
+  <div class="field">
+    <%= f.label :sole %><br />
+    <%= f.text_area :sole, :rows=>2, :cols=>60  %>
   </div>
 </div>
 <div id="form_bottom">

@@ -1,0 +1,155 @@
+<div class="noprint">
+  <br /><br />
+  <% unless current_user.department == "Commercial" %>
+  <p class="align_right"><%= link_to "edit invoice", edit_invoice_path %> |
+    <%= link_to "delete invoice", @invoice, confirm: 'Invoice ' + @invoice.number.to_s + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
+  <% end %>
+  <p class="button_invoice" style="float: left;"><%= link_to "Return to Order", order_path(@invoice.drop.order), :method=> :get %></p>
+  <div class="clear"></div>
+</div>
+<div id="invoice">
+  <p><strong>TMLS SERVICES LTD</strong></p>
+  <p class="smaller">32, North End Road , West Kensington, London, W14 OSH, UK</p>
+  <p class="smaller">Tel: 02073713503 | 02073712706 Fax: 02073716322 <span class="align_right">VAT No .843934701</span></p>
+
+  <div class="invoice_title"><strong>COMMERCIAL INVOICE</strong></div>
+  <div class="align_right"><%= @invoice.date.to_formatted_s(:rfc822) %></div>
+  <table>
+    <tr><th>INVOICE:</th><td><%= @invoice.number %></td></tr>
+  </table>
+
+  <table class="float_left">
+    <tr><th>APPLICANT:</th><td><%= @invoice.drop.order.customer.name %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.customer.address1 %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.customer.address2 %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.customer.city %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.customer.postcode %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.customer.country %></td></tr>
+  </table>
+
+  <table class="align_right">
+    <tr><th>CONSIGNEE:</th><td><%= @invoice.drop.consignee.name %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.consignee.address1 %>, <%= @invoice.drop.consignee.address2 %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.consignee.city %>, <%= @invoice.drop.consignee.postcode %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.consignee.country %></td></tr>
+  </table>
+
+  <table class="align_right">
+    <tr><th>FACTORY:</th><td><%= @invoice.drop.order.factory.name %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.factory.address1 %>, <%= @invoice.drop.order.factory.address2 %></td></tr>
+    <tr><th></th><td><%= @invoice.drop.order.factory.city %>, <%= @invoice.drop.order.factory.postcode %>, <%= @invoice.drop.order.factory.country %></td></tr>
+  </table>
+
+  <table class="float_left">
+    <tr><th>ORIGIN OF GOODS:</th><td><%= @invoice.drop.order.factory.country %></td></tr>
+  </table>
+
+  <table class="float_left">
+    <tr><th>HTS CODE:</th><td><%= @invoice.hts %></td></tr>
+  </table>
+
+  <table class="align_right">
+    <tr><th>PURCHASE ORDER:</th><td><%= @invoice.drop.order.number %></td></tr>
+  </table>
+  <div class="clear"></div>
+
+  <div class="invoice_title">DESCRIPTION OF GOODS</div>
+
+  <p><%= pluralize(@invoice.cartoons, 'CORRUGATED CARTON').upcase %>  CONTAINING <%= pluralize(@invoice.drop.items.sum("quantity"), 'PAIR').upcase %> OF LADIES FOOTWEAR</p>
+  <div id="products_invoice">
+            <% if @invoice.drop.order.currency == 'usd' %>
+              <% cur = "$" %>
+            <% elsif @invoice.drop.order.currency == 'gbp' %>
+              <% cur = "£" %>
+            <% else @invoice.drop.order.currency == 'eur' %>
+              <% cur = "€" %>
+            <% end %>
+    <table>
+      <tr>
+        <th>COLOUR</th>
+        <th>STYLE NO</th>
+        <th>CUSTOMER<br />STYLE</th>
+        <th>LINE NO</th>
+        <th>MATERIAL</th>
+        <th>MDA</th>
+        <th>PAIRS</th>
+        <th style="text-align: right">PRICE (<%= cur %>)</th>
+        <th style="text-align: right">TOTAL (<%= cur %>)</th>
+      </tr>
+      <% @invoice.drop.items.each do |item| %>
+      <tr>
+        <td><%= item.colour.upcase %></td>
+        <td><%= item.style.style.upcase %></td>
+        <td><%= item.customer_style.upcase %></td>
+        <td><%= item.line_number.upcase %></td>
+        <td><%= item.upper.upcase %></td>
+        <td><%= item.mda %></td>
+        <td style="text-align: right"><%= item.quantity %></td>
+        <td style="text-align: right"><%= cur %><%= number_with_precision item.customer_price, :precision => 2, :delimiter => ',' %></td>
+        <td style="text-align: right"><%= cur %><%= number_with_precision (item.customer_price * item.quantity), :precision => 2, :delimiter => ',' %></td>
+      </tr>
+      <% end %>
+
+        <% if cur == '£' and @invoice.vat != 0 %>
+          <tr>
+            <td colspan="7"></td><td style="text-align: right"><strong>TOTAL NET</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price")), :precision => 2, :delimiter => ',' %></strong></td>
+          </tr>
+          <tr>
+            <td colspan="7"></td><td style="text-align: right"><strong>VAT (<%= number_with_precision @invoice.vat, :precision => 2, :delimiter => ',' %>%)</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price") * @invoice.vat/100), :precision => 2, :delimiter => ',' %></strong></td>
+          </tr>
+          <tr>
+            <th colspan="6">TOTAL</th><th style="text-align: right"><%= @invoice.drop.items.sum("quantity") %></th><th></th><th style="text-align: right"><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price")+(@invoice.drop.items.sum("quantity * customer_price") * @invoice.vat/100)), :precision => 2, :delimiter => ',' %></th>
+          </tr>
+        <% else %>
+          <tr>
+            <th rowspan="2" colspan="6">TOTAL</th><th style="text-align: right"><%= @invoice.drop.items.sum("quantity") %></th><th style="text-align: right">TOTAL FOB <%= @invoice.drop.order.factory.country %></th><th style="text-align: right"><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price")), :precision => 2, :delimiter => ',' %></th>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+  <div id="invoice_payment">
+      <table>
+        <tr><th>SAY:</th><td><%=  (@invoice.drop.items.sum("quantity * customer_price")+(@invoice.drop.items.sum("quantity * customer_price") * @invoice.vat/100)) %></td></tr>
+      </table>
+
+      <table>
+        <tr><th>TERMS:</th><td><%= simple_format(@invoice.drop.order.customer.terms.upcase) %></td></tr>
+      </table>
+
+      <% unless @invoice.bank.notice.nil? or @invoice.bank.notice == '' %>
+        <table>
+          <tr><th>NOTICE OF ASSIGNMENT:</th><td><%= simple_format(@invoice.bank.notice.upcase) %></td></tr>
+        </table>
+      <% end %>
+
+      <table>
+        <tr><th>BANK DETAILS:</th><td><strong><%= simple_format(@invoice.bank.name.upcase) %></strong></td></tr>
+        <% unless @invoice.bank.address.nil? or @invoice.bank.address == '' %>
+          <tr><th></th><td><%= simple_format(@invoice.bank.address.upcase) %></td></tr>
+        <% end %>
+      </table>
+      <table>
+        <tr><th class="thbank">SORT CODE:</th><td><%= @invoice.bank.sort_code.upcase %></td></tr>
+        <tr><th class="thbank">ACCOUNT:</th><td><%= @invoice.bank.account.upcase %></td></tr>
+        <% unless @invoice.bank.iban.nil? or @invoice.bank.iban == '' %>
+          <tr><th class="thbank">IBAN:</th><td><%=@invoice.bank.iban.upcase %></td></tr>
+        <% end %>
+        <% unless @invoice.bank.swift.nil? or @invoice.bank.swift == '' %>
+          <tr><th class="thbank">SWIFT:</th><td><%=@invoice.bank.swift.upcase %></td></tr>
+        <% end %>
+        <% unless @invoice.bank.bic.nil? or @invoice.bank.bic == '' %>
+          <tr><th class="thbank">BIC:</th><td><%=@invoice.bank.bic.upcase %></td></tr>
+        <% end %>
+      </table>
+
+      <table>
+        <tr><th>PROPERTY AND RISK:</th><td><p>IN SPITE OF DELIVERY HAVING BEEN MADE, PROPERTY IN THE PRODUCTS SHALL NOT PASS FROM THE COMPANY UNTIL:</p></td></tr>
+        <tr><th></th><td><p>1- THE CUSTOMER SHALL HAVE PAID THE PRICE PLUS VAT IN FULL;</p></td></tr>
+        <tr><th></th><td><p>2- NO OTHER SUMS WHATEVER SHALL BE DUE FROM THE CUSTOMER TO THE COMPANY.</p></td></tr>
+      </table>
+
+      <table>
+        <tr><th></th><td>GROSS WEIGHT: <%= @invoice.gross %> KGS<span class="marginleft">NET WEIGHT: <%= @invoice.net %> KGS</span><span class="marginleft">CUBIC METERS: <%= @invoice.cubic %> M3</span></td></tr>
+      </table>
+  </div>
+</div>

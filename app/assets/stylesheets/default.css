@@ -1,186 +1,246 @@
 body {
-	font:70% Verdana,Tahoma,Arial,sans-serif;
-	background:#000000;
-    margin: 10px;
+	font: 70% Verdana,Tahoma,Arial,sans-serif;
+    margin: 0 auto;
     padding: 0;
+    width: 100%;
+    background: #000000;
 	}
 
 /* Main layout*/
 #wrap {
-	background:#ffffff;
-	margin:0 auto;
-    padding: 5px;
-    width:810px;
+    margin: 1%;
+    padding: 0.5%;
+    width: 97%;
+    background: #ffffff;
     border-radius: 10px;
 	}
 
 /* Header*/
 header {
-	height:95px;
-    margin: 0 1px;
-    }
-.align_right {
-    float: right;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 95px;
+    background: #000000;
+    text-align: center;
+    border-radius: 10px;
     }
 
 /*menu */
 nav {
-	background:#ffffff;
-	float:left;
-	width:800px;
-	text-align:center;
+	float: left;
+	width: 98%;
+    margin-bottom: 10px;
+    background: #ffffff;
+	text-align: center;
 	}
 nav ul {
-	list-style:none;
-	margin:0;
-	padding:0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 	}
 nav li {
-	float:left;
+	float: left;
 	}
 nav li a {
-    display:block;
+    display: block;
     border: 1px solid #000000;
     color: #000000;
-	font-size:1.2em; 
-	margin:1px; 
-	padding:5px 20px 5px 20px;
-	text-decoration:none;
+	font-size: 1.2em;
+	margin: 1px;
+	padding: 5px 20px 5px 20px;
+	text-decoration: none;
 	}
 nav li a:hover {
 	background: #000000;
     border: 1px solid #000000;
     color: #ffffff;
-	text-decoration:none;
+	text-decoration: none;
 	}
 nav li ul {
-    text-align:left;
-	display:none;
-	position:absolute;
+    text-align: left;
+	display: none;
+	position: absolute;
 	}
 nav li:hover ul{
-	display:block;
+	display: block;
 	background: #ffffff;
     border: 1px solid #000000;
     color: #000000;
-	text-decoration:none;
+	text-decoration: none;
 	}
 nav li li {
-	display:block;
-	float:none;
+	display: block;
+	float: none;
 	}
 nav li ul a{
-	display:block;
+	display: block;
 	}
 nav li ul a:hover{
     border: 1px solid #000000;
     color: #ffffff;
 	font-size:1.2em; 
-	margin:1px; 
-	padding:5px 20px 5px 20px;
-	text-decoration:none;
+	margin: 1px;
+	padding: 5px 20px 5px 20px;
+	text-decoration: none;
 	}
+.align_right {
+    float: right;
+    }
+.align_center {
+    text-align: center;
+    }
+.float_left {
+    float: left;
+}
 
 /* Contents */
 section {
     float: left;
-    width: 786px;
-    margin-top: 5px;
-    border: 2px solid #000000;
-    text-align: justify;
-    padding: 10px;
+    width: 98%;
+    margin-bottom: 10px;
+    padding: 0 1% 1%;
+    text-align: left;
     border-radius: 10px;
+    background: #eeeeee;
 	}
 section h1 {
-	font-size:2.5em;
-	font-weight:500; 
-	margin:15px 0 15px;
+	font-size: 2.0em;
+	font-weight: 500;
 	}
 section h2 {
-	font-size:2em;
-	font-weight:500;
-	letter-spacing:-2px;
-	margin:15px 0 30px;
+	font-size: 1.7em;
+	font-weight: 500;
 	}
 section h3 {
-	font-size:1.5em;
-	font-weight:500; 
-	margin:15px 0 15px;
+	font-size: 1.4em;
+	font-weight: 500;
 	}
+
 #content1 {
     float: left;
-    width: 500px;
-    }
-.comments {
-    margin-left: 73px;
-    margin-top: -23px;
+    width: 28%;
+    min-width: 232px;
+    overflow: scroll;
     }
 #content2 {
-    font-size: 110%;
-    float: right;
-    border-left: 1px solid #aaaaaa;
-    width: 200px;
-    padding-left: 10px;
+    float: left;
+    width: 20%;
+    min-width: 160px;
+    overflow: scroll;
     }
-#content3 {
+.edit {
     clear: both;
-    border-top: 1px solid #aaaaaa;
+    text-align: right;
+}
+.comments {
+    width: 100%;
+    min-width:160px;
+    margin-top: 10px;
+    overflow: scroll;
+    text-align: justify;
+    }
+#content3a {
+    float: right;
+    width: 30%;
+    min-width: 214px;
+    overflow:scroll;
+    background: #eeeeee;
+    }
+.conten3 {
+    background: #bbbbbb;
+    border: 0;
+    }
+#content3b {
+    float: right;
+    width: 20%;
+    min-width: 165px;
+    overflow: scroll;
+    background: #eeeeee;
+    }
+#content4 {
+    clear: both;
+    border-top: 2px solid #000000;
     }
 .drop_line1 {
     float: left;
-    padding: 10px 10px 0;;
-    margin-top: 10px;
+    margin-top: 30px;
+    padding: 1% 1% 0;
     }
 .drop_line2 {
     float: right;
-    padding: 0 40px;
-    margin-top: 10px;
+    margin-top: 30px;
+    padding: 0 2%;
     }
 .drop_line3 {
     float: right;
-    padding: 10px 10px 0;
-    margin-top: 10px;
-    border-left: 1px solid #bbbbbb;
+    margin-top: 30px;
+    padding: 10px 1% 0;
     }
 #drop {
     clear: both;
-    border: 1px solid #000000;
-    padding: 10px;
-    border-radius: 10px;
     margin-bottom: 20px;
-    background: #eeeeee;
+    padding: 1%;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background: #bbbbbb;
     }
+#dropleft {
+    float: left;
+    width: 78%;
+    min-width: 579px;
+    }
+#dropright {
+    float: right;
+    margin-left: 2%;
+    width: 18%;
+    min-width: 180px;
+    }
+
 #form_left {
     float: left;
     }
 #form_right {
     float: left;
-    margin-left: 50px;
+    margin-left: 5%;
     }
 #form_bottom {
     clear: both;
-}
+    }
+
 /* Footer */
 footer {
-	background:#ffffff;
-	border-top:2px solid #dadada;
 	clear:both;
-	color:#999999;
-	font-size:0.9em;
-    margin: 5px auto 0;
-    padding: 5px 0;
+    width:98%;
+    padding: 5px 1%;
     text-align:center;
-	width:500px;
+    color:#ffffff;
+    background:#000000;
 	}
 footer a {
-	color:#999999;
+	color:#ffffff;
 	}
+footer ul {
+    list-style-type: none;
+    }
+footer li {
+    display: inline;
+    }
+.gabrielhilal {
+    font-size: 0.8em;
+    text-align: right;
+    color: #aaaaaa;
+    }
+.gabrielhilal a {
+    color: #aaaaaa;
+}
 
 /* forms and tables*/
 .field, .actions {
     margin-bottom: 10px;
     }
 table {
+    width: 100%;
     border: 1px solid #000000;
     background: #ffffff;
     }
@@ -190,27 +250,61 @@ th {
     text-align: center;
     padding-right: 10px;
     padding-left: 10px;
+    vertical-align: middle;
     }
 td {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    vertical-align: middle;
+    }
+.bigtr {
+    height: 22px;
+    }
+.noborder {
+    border: 0;
+    background: #eeeeee;
     }
 .space{
     padding-left: 20px;
     }
+.centre {
+    text-align: center;
+    }
+.bigselect {
+    width: 500px;
+}
+.clear {
+    clear: both;
+}
+.button_invoice {
+    float: right;
+    border: 1px solid #000000;
+    background: #eeeeee;
+    padding: 2px 5px;
+    margin: 5px;
+    border-radius: 3px;
+}
+.nospace tr td, .nospace tr td{
+    padding: 0;
+    margin: 0;
+}
 
+.button_invoice a {
+    text-decoration: none;
+    color: #000000;
+}
 /* flash and errors */
 .success {
     background:#e6efc2;
     color:#264409;
     border-color:#c6d880;
-    font-size:2em;
+    font-size:1.3em;
     }
 .error {
     background:#cccccc;
     color:#ff3333;
     border-color:#ff3333;
-    font-size:2em;
+    font-size:1.3em;
     }
 .field_with_errors {
     background-color: #ff3333;
@@ -228,16 +322,123 @@ td {
     }
 
 /*hover to display*/
-.showme{
-    display: none;
+.showhim {
+    cursor: help;
     }
-.showhim:hover .showme{
-    display: block;
+.showme {
+    display: none;
     position: absolute;
-    margin-left: 35px;
-    margin-top: -15px;
+    margin-left: 40px;
+    margin-top: -30px;
     background: #999999;
-    width: auto;
     padding: 5px;
     border-radius: 10px;
+    }
+.showhim:hover .showme {
+    display: block;
 	}
+
+.noprint {}
+
+#invoice {
+    width: 96%;
+    padding: 2%;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #000000;
+}
+
+#invoice table {
+    width: 50%;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+
+#invoice table p {
+    padding: 0;
+    margin: 0;
+}
+
+#invoice table th{
+    width: 30%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    vertical-align: top;
+}
+
+#invoice table td{
+    width: 70%;
+    text-align: justify;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.smaller {
+    font-size: 0.8em;
+}
+
+.invoice_title {
+    width: 100%;
+    border: 1px solid #000000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#products_invoice {
+
+}
+
+#products_invoice table {
+    width: 100%;
+}
+
+#products_invoice table th {
+    width: auto;
+    border: 1px solid #000000;
+}
+#products_invoice table td {
+    width: auto;
+}
+
+#invoice_payment {
+    width: 96%;
+    padding: 2%;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #000000;
+}
+
+#invoice_payment table {
+    width: 80%;
+}
+
+
+#invoice_payment table th{
+    width: 20%;
+}
+
+#invoice_payment table td{
+    width: 80%;
+}
+
+.marginleft {
+    margin-left: 15%;
+}
+
+.thbank {
+    font-weight: normal;
+}
+
+.search {
+    float: left;
+    width: 20%;
+    border: none;
+    background: none;
+    margin-right: 5%;
+}

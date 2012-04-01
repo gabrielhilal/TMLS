@@ -16,6 +16,8 @@ class CreateItems < ActiveRecord::Migration
       t.string :heel
       t.integer :drop_id
       t.integer :style_id
+      t.string  :upper
+      t.string  :platform
 
       t.timestamps
     end

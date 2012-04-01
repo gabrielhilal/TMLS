@@ -1,91 +1,236 @@
-<div id="content1" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-  <h3>Order: <strong><%= @order.number %></strong></h3>
-  <div>Comments:</div>
+<%-# top left container -%>
+<div id="content1">
+  <table class="noborder">
+    <tr><td>Order No:</td><td><strong><%= @order.number %></strong></td></tr>
+    <tr><td>Date:</td><td><strong><%= @order.date.to_formatted_s(:rfc822) %></strong></td></tr>
+    <tr><td>Customer:</td><td><strong><%= @order.customer.name %></strong></td></tr>
+    <tr><td>Factory:</td><td><strong><%= @order.factory.name %></strong></td></tr>
+            <% if @order.currency == 'usd' %>
+              <% cur = "$" %>
+              <% curdet = "$ USD" %>
+            <% elsif @order.currency == 'gbp' %>
+              <% cur = "£" %>
+              <% curdet = "£ GBP" %>
+            <% else @order.currency == 'eur' %>
+              <% cur = "€" %>
+              <% curdet = "€ EUR" %>
+            <% end %>
+    <tr><td>Currency:</td><td><strong><%= curdet %></strong></td></tr>
+  </table>
+</div>
+<%-# top middle container -%>
+<div id="content2">
+  <% unless current_user.department == "Factory" %>
+  <div class= "edit"><%= link_to "Edit Order", edit_order_path %> |
+    <%= link_to 'Delete Order', @order, confirm: 'Order ' + @order.number + ' will be deleted! Are you sure you want to delete it?', method: :delete %>
+  </div>
+  <% end %>
   <div class="comments"><%= simple_format(@order.comments) %></div>
 </div>
-<div id="content2">
-  <p><%= link_to "Edit Order", edit_order_path %> |
-    <%= link_to 'Delete Order', @order, confirm: 'Order ' + @order.number + ' will be deleted! Are you sure you want to delete it?', method: :delete %>
-  </p>
-  <p>Date: <strong><%= @order.date.to_formatted_s(:rfc822) %></strong></p>
-  <p>Customer: <strong><%= @order.customer.name %></strong></p>
-  <p>Factory: <strong><%= @order.factory.name %></strong></p>
 
-<% if @order.currency == 'usd' %>
-   <p>Currency: <strong>$ USD</strong></p>
-<% elsif @order.currency == 'gbp' %>
-   <p>Currency: <strong>£ GBP</strong></p>
-<% else @order.currency == 'eur' %>
-   <p>Currency: <strong>€ EUR</strong></p>
-<% end %>
+<%-# top right container A -%>
+        <% tquantity= @order.drops.map do |i| i.items.sum("quantity") end.sum %>
+        <% tfactory= @order.drops.map do |i| i.items.sum("quantity * factory_price").to_f end.sum %>
+        <% tcustomer= @order.drops.map do |i| i.items.sum("quantity * customer_price").to_f end.sum %>
+        <% tdiscount= @order.customer.discount.to_f * tcustomer / 100 %>
+        <% tfinance= @order.finance.to_f * tcustomer / 100 %>
+        <% treturns= @order.returns.to_f * tcustomer / 100 %>
 
+<%-# top right container B -%>
+<% unless current_user.department == "Factory" %>
+<div id="content3b">
+  <table class="conten3">
+    <tr><td><strong><em>Gross</em></strong></td><td></td></tr>
+    <tr><td>Total Profit:</td><td><%= cur %><%= number_with_precision (tcustomer.to_f - tfactory.to_f), :precision => 2, :delimiter => ',' %></td></tr>
+    <tr><td>Per Pair:</td><td><%= cur %><%= number_with_precision (tcustomer.to_f - tfactory.to_f)/tquantity.to_f, :precision => 2, :delimiter => ',' %></td></tr>
+    <tr><td><strong><em>Net</em></strong></td><td></td></tr>
+    <tr><td>Total Profit:</td><td><%= cur %><%= number_with_precision (tcustomer.to_f - tfactory.to_f - tdiscount.to_f - tfinance.to_f - treturns.to_f), :precision => 2, :delimiter => ',' %></td></tr>
+    <tr><td>Per Pair:</td><td><%= cur %><%= number_with_precision (tcustomer.to_f - tfactory.to_f - tdiscount.to_f - tfinance.to_f - treturns.to_f)/tquantity.to_f, :precision => 2, :delimiter => ',' %></td></tr>
+  </table>
 </div>
-<div id="content3">
-<% i = 1 %>
-<% @drops.each do |drop| %>
-<% date = (drop.customer_date - drop.factory_date).to_i %>
-  <div class="drop_line1">
-    <p><strong>DROP <%= i  %></strong></p>
-  </div>
-      <div class="drop_line3">
-        <p>
-          <%= link_to "edit", edit_order_drop_path(@order, drop) %> |
-          <%= link_to "delete", order_drop_path(@order, drop), confirm: 'Drop will be deleted! Are you sure you want to delete it?', method: :delete %>
-        </p>
-      </div>
-  <div class="drop_line2">
-    <p>Consignee: <strong>testetete</strong><br />
-      Margin: <strong><%= date %> days</strong>
-    </p>
-  </div>
+<% end %>
+<div id="content3a">
+  <table class="conten3">
+    <tr><td>Quantity:</td><td><%= tquantity %></td></tr>
+    <% unless current_user.department == "Factory" %>
+    <tr><td>Total Customer:</td><td><%= cur %><%= number_with_precision tcustomer, :precision => 2, :delimiter => ','  %></td></tr>
+    <% end %>
+    <tr><td>Total Factory:</td><td><%= cur %><%= number_with_precision tfactory, :precision => 2, :delimiter => ','  %></td></tr>
+    <% unless current_user.department == "Factory" %>
+    <tr><td>Discount (<%= number_with_precision @order.customer.discount, :precision => 2, :delimiter => ',' %>%):</td><td><%= cur %><%= number_with_precision tdiscount, :precision => 2, :delimiter => ',' %></td></tr>
+    <tr><td>Finance (<%= number_with_precision @order.finance, :precision => 2, :delimiter => ',' %>%):</td><td><%= cur %><%= number_with_precision tfinance, :precision => 2, :delimiter => ',' %></td></tr>
+    <tr><td>Returns (<%= number_with_precision @order.returns, :precision => 2, :delimiter => ',' %>%):</td><td><%= cur %><%= number_with_precision treturns, :precision => 2, :delimiter => ',' %></td></tr>
+    <% end %>
+  </table>
+</div>
 
-  <div class="drop_line2">
-    <p>Factory Date: <strong><%= drop.factory_date.to_formatted_s(:rfc822) %> <br /> </strong>
-      Customer Date: <strong><%= drop.customer_date.to_formatted_s(:rfc822) %></strong>
-    </p>
+<%-# main container -%>
+<div id="content4">
+
+  <div class="align_right">
+  <% if current_user.department == "Factory" %>
+    <% unless @order.acknowledgement == true %>
+      <td><%= button_to "Acknowledge", :controller=>"orders", :action => "acknow", :id=>@order.id %></td>
+    <% end %>
+  <% else %>
+    <% if @order.status(@order) == 'Shipped' or @order.status(@order) == 'no drops' %>
+      <td></td>
+    <% elsif @order.acknowledgement == true %>
+         <td><%= button_to "Request Acknowledgment", :controller=>"orders", :action => "requestacknow", :id=>@order.id %></td>
+    <% else %>
+      <% unless @order.acknowledgementdate.nil? %>
+         <td><strong>Last Acknowledgement: <%= @order.acknowledgementdate.to_formatted_s(:rfc822) %></strong></td>
+      <% end %>
+    <% end %>
+  <% end %>
+
   </div>
+  <div class="clear"></div>
+
+  <% i = 1 %>
+  <% @drops.each do |drop| %>
+  <% date = (drop.customer_date - drop.factory_date).to_i %>
+    <%-# Drop summary 4 columns -%>
+      <%-# column left -%>
+        <div class="drop_line1">
+          <p><strong>DROP <%= i  %></strong></p>
+        </div>
+      <% unless current_user.department == "Factory" %>
+      <%-# column right -%>
+        <div class="drop_line3">
+          <p>
+            <%= link_to "edit", edit_order_drop_path(@order, drop) %> |
+            <%= link_to "delete", order_drop_path(@order, drop), confirm: 'Drop will be deleted! Are you sure you want to delete it?', method: :delete %>
+          </p>
+        </div>
+      <% end %>
+      <% if current_user.department == "Factory" %>
+      <div class="drop_line2">
+        <table class="noborder">
+          <tr><td>Consignee:</td><td><strong><%= drop.consignee.name %></strong></td></tr>
+          <tr><td>XF Date:</td><td><strong><%= drop.factory_date.to_formatted_s(:rfc822) %></strong></td></tr>
+        </table>
+      </div>
+      <% else %>
+      <%-# column middle right -%>
+        <div class="drop_line2">
+          <table class="noborder">
+            <tr><td>Consignee:</td><td><strong><%= drop.consignee.name %></strong></td></tr>
+            <tr><td>Margin:</td><td><strong><%= date %> days</strong></td></tr>
+          </table>
+        </div>
+      <%-# column middle left -%>
+        <div class="drop_line2">
+          <table class="noborder">
+            <tr><td>Factory Date:</td><td><strong><%= drop.factory_date.to_formatted_s(:rfc822) %></strong></td></tr>
+            <tr><td>Customer Date:</td><td><strong><%= drop.customer_date.to_formatted_s(:rfc822) %></strong></td></tr>
+          </table>
+        </div>
+      <% end %>
+  <%-# drop container -%>
   <div id="drop">
+    <div id="dropleft">
     <table>
       <tr>
+        <th>Image</th>
         <th>Colour</th>
         <th>Quantity</th>
-        <th>Factory Price</th>
-        <th>Customer Price</th>
-        <th>Customer Style</th>
-        <th>Image</th>
+        <th>Factory<br />Price</th>
+        <% unless current_user.department == "Factory" %>
+        <th>Customer<br />Price</th>
+        <% end %>
+        <th>Customer<br />Style</th>
+        <th>Upper</th>
+        <% unless current_user.department == "Factory" %>
+        <td></td>
+        <td></td>
+        <% end %>
       </tr>
       <tr>
       <% drop.items.each do |item| %>
+        <td class="showhim"><%= image_tag item.style.image_url(:thumb).to_s %>
+                  <div class="showme">
+                    <p>
+                      <strong>Summary:</strong><br />
+                      Lining: <%= item.lining %><br />
+                      Sock: <%= item.sock %><br />
+                      Binding: <%= item.binding %><br />
+                      Metals: <%= item.metals %><br />
+                      Sole: <%= item.sole %><br />
+                      Heel: <%= item.heel %><br />
+                    </p>
+                  </div>
+                 </td>
         <td><%= item.colour %></td>
         <td><%= item.quantity %></td>
-        <td><%= item.factory_price %></td>
-        <td><%= item.customer_price %></td>
-        <td><%= item.customer_style %></td>
-        <td class="showhim"><%= image_tag item.style.image_url(:thumb).to_s %>
-          <div class="showme">
-            <p>
-              <strong>Summary:</strong><br />
-              Lining: <%= item.lining %><br />
-              Sock: <%= item.sock %><br />
-              Binding: <%= item.binding %><br />
-              Metals: <%= item.metals %><br />
-              Sole: <%= item.sole %><br />
-              Heel: <%= item.heel %><br />
-            </p>
-            <p><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %> |
-             <%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %></p>
-          </div>
-
-
-        </td>
-      </tr>
+        <td><%= cur %><%= number_with_precision item.factory_price, :precision => 2, :delimiter => ',' %></td>
+        <% unless current_user.department == "Factory" %>
+        <td><%= cur %><%= number_with_precision item.customer_price, :precision => 2, :delimiter => ',' %></td>
         <% end %>
+        <td><%= item.customer_style %></td>
+        <td><%= item.upper %></td>
+        <% unless current_user.department == "Factory" %>
+        <td><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %></td>
+        <td><%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %></td>
+        <% end %>
+      </tr>
+      <% end %>
       <tr>
-        <td><%= link_to "New Item", new_order_drop_item_path(@order, drop) %></td>
+        <% unless current_user.department == "Factory" %>
+        <td colspan="8"><%= link_to "New Item", new_order_drop_item_path(@order, drop) %></td>
+        <% end %>
       </tr>
     </table>
+    </div>
+    <% unless current_user.department == "Factory" %>
+    <div id="dropright">
+      <% unless drop.items.count == 0 %>
+      <% if drop.invoice.nil? %>
+         <% unless current_user.department == "Commercial" %>
+         <div class="button_invoice"><%= link_to "Raise Invoice", new_invoice_path(:drop_id=> drop.id), :method=> :get %></div><br /><br />
+         <% end %>
+      <% else %>
+         <div class="button_invoice"><%= link_to "View Invoice", invoice_path(drop.invoice) %></div><br /><br />
+      <% end %>
+      <strong>Drop Summary:</strong><br />
+      <table>
+        <tr><td>Quantity:</td><td><strong><%= drop.items.sum("quantity") %></strong></td></tr>
+        <tr><td>Factory:</td><td><strong><%= cur %><%= number_with_precision drop.items.sum("quantity * factory_price"), :precision => 2, :delimiter => ',' %></strong></td></tr>
+        <tr><td>Customer:</td><td><strong><%= cur %><%= number_with_precision drop.items.sum("quantity * customer_price"), :precision => 2, :delimiter => ','  %></strong></td></tr>
+        <tr><td colspan="2" class="showhim">Breakdown
+             <div class="showme">
+                      <% avcustomer= drop.items.sum("customer_price * quantity").to_f / drop.items.sum("quantity").to_i %>
+                      <% avfactory= drop.items.sum("factory_price * quantity").to_f / drop.items.sum("quantity").to_i %>
+                      <% finance= @order.finance %>
+                      <% returns= @order.returns %>
+
+                      <% discount= @order.customer.discount %>
+                      <% terms= avcustomer.to_f * discount.to_f / 100  %>
+                      <% financing= avcustomer.to_f * finance.to_f / 100  %>
+                      <% returning= avcustomer.to_f * returns.to_f / 100  %>
+                      <% gprofit= avcustomer.to_f - avfactory.to_f %>
+                      <% nprofit= avcustomer.to_f - terms.to_f - financing.to_f - returning.to_f - avfactory.to_f %>
+                <table>
+                  <tr><td>Customer:</td><td class="align_right"><%= number_with_precision avcustomer, :precision => 2, :delimiter => ',' %></td></tr>
+                  <tr><td>Factory:</td><td class="align_right">-<%= number_with_precision avfactory, :precision => 2, :delimiter => ',' %></td></tr>
+                  <tr><td><strong>Gross Profit:</strong></td><td class="align_right"><strong><%= number_with_precision gprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+                  <tr><td>Discount (<%= number_with_precision @order.customer.discount, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision terms, :precision => 2, :delimiter => ',' %></td></tr>
+                  <tr><td>Finance (<%= number_with_precision @order.finance, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision financing, :precision => 2, :delimiter => ',' %></td></tr>
+                  <tr><td>Returns (<%= number_with_precision @order.returns, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision returning, :precision => 2, :delimiter => ',' %></td></tr>
+                  <tr><td><strong>Net Profit:</strong></td><td class="align_right"><strong><%= number_with_precision nprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+                </table>
+             </div>
+        </td></tr>
+      </table>
+  <% end %>
+    </div>
+    <% end %>
+    <div class="clear"></div>
   </div>
+
 <% i += 1 %>
 <% end %>
+  <% unless current_user.department == "Factory" %>
   <div class="drop_line1"><%= link_to "New Drop", new_order_drop_path(@order) %></div>
+  <% end %>
 </div>

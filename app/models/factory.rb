@@ -1,5 +1,6 @@
 class Factory < ActiveRecord::Base
   has_many :orders
+  has_one :user
   attr_accessible :address1, :address2, :city, :contact, :country, :email, :name, :postcode, :telephone
   default_scope :order => "country, name"
 

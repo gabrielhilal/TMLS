@@ -8,6 +8,10 @@
     <%= f.label :customer_date, "Customer Date" %><br />
     <%= f.text_field :customer_date %>
   </div>
+  <div class="field">
+    <%= f.label :consignee_id, "Consignee" %><br />
+    <%= f.collection_select(:consignee_id, @consignees, :id, :name , {:include_blank => 'Select Consignee'} ) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

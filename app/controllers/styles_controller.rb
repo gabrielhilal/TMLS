@@ -1,7 +1,9 @@
 class StylesController < ApplicationController
+  before_filter :factory
+
   def index
       @title = "Styles"
-      @styles = Style.all
+      @styles = Style.search(params[:search])
     end
 
     def new

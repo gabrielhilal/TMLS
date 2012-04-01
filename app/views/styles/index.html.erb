@@ -1,4 +1,11 @@
 <h1>Styles</h1>
+<div class="align_right">
+  <%= form_tag styles_path, method: :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+<% end %>
+<br />
+</div>
 
 <table>
   <tr>
@@ -20,6 +27,7 @@
   </tr>
     <% end %>
 </table>
+<p><%= link_to "New Style", new_style_path %></p>
 
 
 

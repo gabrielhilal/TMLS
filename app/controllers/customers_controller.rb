@@ -1,4 +1,7 @@
 class CustomersController < ApplicationController
+  before_filter :factory
+  before_filter :commercial, :only => [ :create, :destroy, :edit, :new, :update ]
+
   def index
     @title = "Customers"
     @customers = Customer.all

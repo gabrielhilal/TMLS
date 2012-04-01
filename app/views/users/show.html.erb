@@ -1,7 +1,93 @@
-<h1>Home</h1>
+<h1 class="float_left">Home</h1>
+
+
 <div class = "align_right">
   <%= link_to "Change your password", edit_user_path %>
 <% if current_user.admin? %> |
   <%= link_to "Manage Users", users_path %>
 <% end %>
 </div>
+<br /> <br /> <br />
+
+
+<div class="align_right">
+  <%= form_tag orders_path, method: :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Find Order", name: nil %>
+<% end %>
+  <% unless current_user.department == "Factory" %>
+<br />
+  <%= form_tag styles_path, method: :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Find Style|Construction", name: nil %>
+<% end %>
+<br />
+  <%= form_tag invoices_path, method: :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Find Invoice", name: nil %>
+<% end %>
+  <% end %>
+</div>
+<div class="clear"></div>
+
+<% unless current_user.department != "Factory" %>
+<h3>Orders to be acknowledged</h3>
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Order No</th>
+    <th>Order Date</th>
+    <th>Quantity</th>
+    <th>Factory</th>
+    <th>Amount</th>
+    <th>Latest XF Date</th>
+    <th>Order Status</th>
+    <th>Last Acknowl.</th>
+    <td></td>
+  </tr>
+    <% @orders.each do |order| %>
+
+      <% if order.currency == 'usd' %>
+        <% cur = "$" %>
+      <% elsif order.currency == 'gbp' %>
+        <% cur = "£" %>
+      <% else order.currency == 'eur' %>
+        <% cur = "€" %>
+      <% end %>
+
+  <tr class="bigtr">
+    <td><%= order.customer.name %></td>
+    <td><%= link_to order.number, order_path(order) %></td>
+    <td><%= order.date.to_formatted_s(:rfc822) %></td>
+        <% tquantity= order.drops.map do |i| i.items.sum("quantity") end.sum %>
+    <td><%= tquantity %></td>
+    <td><%= order.factory.name %></td>
+        <% tfactory= order.drops.map do |i| i.items.sum("quantity * factory_price").to_f end.sum %>
+    <td><%= cur %><%= number_with_precision tfactory, :precision => 2, :delimiter => ',' %></td>
+    <% if order.drops.count == 0 %>
+      <% if current_user.department == "Factory" %>
+        <td>-</td>
+      <% else %>
+        <td>-</td>
+        <td>-</td>
+      <% end %>
+    <% else %>
+      <td><%= order.drops.maximum("factory_date").to_formatted_s(:rfc822) %></td>
+    <% end %>
+    <td></td>
+    <% if order.acknowledgementdate.nil? %>
+      <td>-</td>
+    <% else %>
+      <td><%= order.acknowledgementdate.to_formatted_s(:rfc822) %></td>
+    <% end %>
+    <% if current_user.department == "Factory" %>
+      <% unless order.acknowledgement == true %>
+        <td><%= button_to "Acknowledge", :controller=>"orders", :action => "acknow", :id=>order.id %></td>
+      <% end %>
+    <% else %>
+
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>

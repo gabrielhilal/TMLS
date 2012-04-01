@@ -1,0 +1,51 @@
+<div class="align_right">
+  <table class="noborder">
+    <tr><th colspan="2">Order Details</th></tr>
+    <tr><td>Order No:</td><td><strong><%= @order.number %></strong></td></tr>
+    <tr><td>Date:</td><td><strong><%= @order.date.to_formatted_s(:rfc822) %></strong></td></tr>
+    <tr><td>Customer:</td><td><strong><%= @order.customer.name %></strong></td></tr>
+    <tr><td>Factory:</td><td><strong><%= @order.factory.name %></strong></td></tr>
+            <% if @order.currency == 'usd' %>
+              <% cur = "$" %>
+              <% curdet = "$ USD" %>
+            <% elsif @order.currency == 'gbp' %>
+              <% cur = "£" %>
+              <% curdet = "£ GBP" %>
+            <% else @order.currency == 'eur' %>
+              <% cur = "€" %>
+              <% curdet = "€ EUR" %>
+            <% end %>
+    <tr><td>Currency:</td><td><strong><%= curdet %></strong></td></tr>
+  </table>
+        <% avcustomer= @drop.items.sum("customer_price * quantity").to_f / @drop.items.sum("quantity").to_i %>
+        <% avfactory= @drop.items.sum("factory_price * quantity").to_f / @drop.items.sum("quantity").to_i %>
+        <% finance= @order.finance %>
+        <% returns= @order.returns %>
+        <% discount= @order.customer.discount %>
+        <% terms= avcustomer.to_f * discount.to_f / 100  %>
+        <% financing= avcustomer.to_f * finance.to_f / 100  %>
+        <% returning= avcustomer.to_f * returns.to_f / 100  %>
+        <% gprofit= avcustomer.to_f - avfactory.to_f %>
+        <% nprofit= avcustomer.to_f - terms.to_f - financing.to_f - returning.to_f - avfactory.to_f %>
+  <table class="noborder">
+    <tr><th colspan="2">Summary</th></tr>
+    <tr><td>Quantity:</td><td><strong><%= @drop.items.sum("quantity") %></strong></td></tr>
+    <tr><td>Customer:</td><td><strong><%= cur %><%= number_with_precision @drop.items.sum("quantity * customer_price"), :precision => 2, :delimiter => ','  %></strong></td></tr>
+    <tr><td>Factory:</td><td><strong><%= cur %><%= number_with_precision @drop.items.sum("quantity * factory_price"), :precision => 2, :delimiter => ',' %></strong></td></tr>
+  </table>
+  <table class="noborder">
+  <tr><th colspan="2">Breakdown</th></tr>
+  <tr><td>Customer:</td><td class="align_right"><%= number_with_precision avcustomer, :precision => 2, :delimiter => ',' %></td></tr>
+  <tr><td>Factory:</td><td class="align_right">-<%= number_with_precision avfactory, :precision => 2, :delimiter => ',' %></td></tr>
+  <tr><td><strong>Gross Profit:</strong></td><td class="align_right"><strong><%= number_with_precision gprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+  <tr><td>Discount (<%= number_with_precision @order.customer.discount, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision terms, :precision => 2, :delimiter => ',' %></td></tr>
+  <tr><td>Finance (<%= number_with_precision @order.finance, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision financing, :precision => 2, :delimiter => ',' %></td></tr>
+  <tr><td>Returns (<%= number_with_precision @order.returns, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision returning, :precision => 2, :delimiter => ',' %></td></tr>
+  <tr><td><strong>Net Profit:</strong></td><td class="align_right"><strong><%= number_with_precision nprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+</table>
+<div class="align_right"><%= button_to "Return to Order", order_path(@order), :method => :get %></div>
+</div>
+
+<h1>New Invoice</h1>
+
+<%= render 'form' %>

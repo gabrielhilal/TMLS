@@ -9,7 +9,13 @@
         <%= f.radio_button :department, "Commercial" %>
         <%= f.label :commercial %><br />
         <%= f.radio_button :department, "Accounts" %>
-        <%= f.label :accounts %>
+        <%= f.label :accounts %><br />
+        <%= f.radio_button :department, "Factory" %>
+        <%= f.label :factory %>
+  </div>
+  <div class="field">
+    <%= f.label :factory %><br />
+    <%= f.collection_select(:factory_id, Factory.all, :id, :name , {:include_blank => 'Select Factory'} ) %>
   </div>
   <div class="field">
     <%= f.label :email %><br />

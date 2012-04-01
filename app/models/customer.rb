@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
   has_many :consignees, :dependent => :destroy
   has_many :orders
-  attr_accessible :address1, :address2, :city, :contact, :country, :discount, :email, :name, :postcode, :returns, :telephone, :terms
+  attr_accessible :address1, :address2, :city, :contact, :country, :discount, :email, :name, :postcode, :telephone, :terms
   default_scope :order => "name"
 
     #email_regex reference: Ruby on Rails Tutorial-Learn Rails by Example (Michael Hartl)-http://ruby.railstutorial.org/
@@ -15,7 +15,6 @@ class Customer < ActiveRecord::Base
                        :uniqueness => { :case_sensitive => false }
   validates :name,     :presence => true,
                        :uniqueness => { :case_sensitive => false }
-  validates :returns,  :presence => true
   validates :terms,  :presence => true
 
 end

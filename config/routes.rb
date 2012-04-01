@@ -1,6 +1,10 @@
 TMLS::Application.routes.draw do
 
+get "search/index"
+
 resources :factories
+
+resources :banks
 
 resources :styles
 
@@ -14,9 +18,14 @@ resources :orders do
  end
 end
 
+resources :invoices
+
 resources :users
 
 resources :sessions
+
+post "orders/acknow"
+post "orders/requestacknow"
 
 match '/login',  :to => 'sessions#new'
 match '/logout', :to => 'sessions#destroy'

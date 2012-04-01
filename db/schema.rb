@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221182016) do
+ActiveRecord::Schema.define(:version => 20120331010550) do
+
+  create_table "banks", :force => true do |t|
+    t.string   "notice"
+    t.string   "name"
+    t.string   "sort_code"
+    t.string   "account"
+    t.string   "swift"
+    t.string   "iban"
+    t.string   "bic"
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "consignees", :force => true do |t|
     t.string   "name"
@@ -37,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.string   "telephone"
     t.string   "terms"
     t.decimal  "discount",   :precision => 7, :scale => 2
-    t.decimal  "returns",    :precision => 7, :scale => 2
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
   end
@@ -45,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
   create_table "drops", :force => true do |t|
     t.date     "factory_date"
     t.date     "customer_date"
-    t.integer  "consignee_id"
     t.integer  "order_id"
+    t.integer  "consignee_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -65,6 +77,23 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "invoices", :force => true do |t|
+    t.integer  "number"
+    t.date     "date"
+    t.integer  "cartoons"
+    t.decimal  "gross",           :precision => 7, :scale => 4
+    t.decimal  "net",             :precision => 7, :scale => 4
+    t.decimal  "cubic",           :precision => 7, :scale => 4
+    t.string   "hts"
+    t.boolean  "paid"
+    t.integer  "drop_id"
+    t.integer  "bank_id"
+    t.decimal  "vat",             :precision => 7, :scale => 2
+    t.string   "factory_invoice"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
   create_table "items", :force => true do |t|
     t.string   "colour"
     t.integer  "quantity"
@@ -81,6 +110,8 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.string   "heel"
     t.integer  "drop_id"
     t.integer  "style_id"
+    t.string   "upper"
+    t.string   "platform"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
   end
@@ -92,8 +123,14 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.string   "comments"
     t.integer  "customer_id"
     t.integer  "factory_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "finance",             :precision => 7, :scale => 2
+    t.decimal  "returns",             :precision => 7, :scale => 2
+    t.boolean  "acknowledgement"
+    t.date     "acknowledgementdate"
+    t.string   "edited"
+    t.date     "edited_date"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   create_table "styles", :force => true do |t|
@@ -109,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20120221182016) do
     t.string   "password_digest"
     t.string   "department"
     t.string   "name"
+    t.integer  "factory_id"
     t.boolean  "admin"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false

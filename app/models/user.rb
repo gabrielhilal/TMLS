@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :department, :name, :admin
+  belongs_to :factory
+  attr_accessible :email, :password, :password_confirmation, :department, :name, :admin, :factory_id
   has_secure_password
 
   #email_regex reference: Ruby on Rails Tutorial-Learn Rails by Example (Michael Hartl)-http://ruby.railstutorial.org/

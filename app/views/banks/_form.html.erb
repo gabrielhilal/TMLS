@@ -1,0 +1,44 @@
+<%= form_for(@bank) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+<div id="form_left">
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :sort_code %><br />
+    <%= f.text_field :sort_code %>
+  </div>
+  <div class="field">
+    <%= f.label :account %><br />
+    <%= f.text_field :account %>
+  </div>
+  <div class="field">
+    <%= f.label :swift %><br />
+    <%= f.text_field :swift %>
+  </div>
+  <div class="field">
+    <%= f.label :iban, "IBAN" %><br />
+    <%= f.text_field :iban %>
+  </div>
+  <div class="field">
+    <%= f.label :bic %><br />
+    <%= f.text_field :bic %>
+  </div>
+</div>
+<div id="form_right">
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_area :address, :rows=>5, :cols=>50 %>
+  </div>
+  <div class="field">
+    <%= f.label :notice %><br />
+    <%= f.text_area :notice, :rows=>5, :cols=>50 %>
+  </div>
+</div>
+<div id="form_bottom">
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+</div>
+<% end %>

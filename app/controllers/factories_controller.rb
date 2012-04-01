@@ -1,4 +1,6 @@
 class FactoriesController < ApplicationController
+  before_filter :factory
+  before_filter :commercial, :only => [ :create, :destroy, :edit, :new, :update ]
 
   def index
     @title = "Factories"

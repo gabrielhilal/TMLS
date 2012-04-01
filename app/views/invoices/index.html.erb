@@ -1,0 +1,109 @@
+<h1>Invoices</h1>
+<div class="align_right">
+  <%= form_tag invoices_path, method: :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+<% end %>
+<br />
+</div>
+<table class="nospace">
+  <tr>
+    <th rowspan="2">Date</th>
+    <th rowspan="2">Number</th>
+    <th colspan="3">GBP</th>
+    <th rowspan="2">USD</th>
+    <th rowspan="2">EUR</th>
+    <th rowspan="2">Customer</th>
+    <th rowspan="2">Order No</th>
+    <th rowspan="2">Factory</th>
+    <th rowspan="2">Factory<br />Invoice</th>
+    <th rowspan="2">GBP</th>
+    <th rowspan="2">USD</th>
+    <th rowspan="2">EUR</th>
+    <th rowspan="2">Cartoons</th>
+    <th rowspan="2">Quantity</th>
+    <th rowspan="2">Gross<br />(KGS)</th>
+  </tr>
+  <tr>
+    <th>Amount</th>
+    <th>VAT</th>
+    <th>Total</th>
+  </tr>
+    <% @invoices.each do |invoice| %>
+  <tr>
+            <% cust = invoice.drop.items.sum("quantity * customer_price") %>
+            <% vat = cust*invoice.vat.to_f/100 %>
+            <% totalcust = cust + vat %>
+            <% totalfact = invoice.drop.items.sum("quantity * factory_price") %>
+    <td><%= invoice.date.to_formatted_s(:rfc822) %></td>
+    <td><%= link_to invoice.number, invoice_path(invoice) %></td>
+    <% if invoice.drop.order.currency == 'gbp' %>
+        <td>£<%= number_with_precision cust, :precision => 2, :delimiter => ','  %></td>
+        <td>£<%= number_with_precision vat, :precision => 2, :delimiter => ','  %></td>
+        <td>£<%= number_with_precision totalcust, :precision => 2, :delimiter => ','  %></td>
+        <td>-</td>
+        <td>-</td>
+    <% elsif invoice.drop.order.currency == 'usd' %>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>$<%= number_with_precision cust, :precision => 2, :delimiter => ','  %></td>
+        <td>-</td>
+    <% elsif invoice.drop.order.currency == 'eur' %>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>€<%= number_with_precision cust, :precision => 2, :delimiter => ','  %></td>
+    <% end %>
+    <td><%= invoice.drop.order.customer.name %></td>
+    <td class="showhim"><%= link_to invoice.drop.order.number, order_path(invoice.drop.order) %>
+      <div class="showme">
+            <% avcustomer= invoice.drop.items.sum("customer_price * quantity").to_f / invoice.drop.items.sum("quantity").to_i %>
+            <% avfactory= invoice.drop.items.sum("factory_price * quantity").to_f / invoice.drop.items.sum("quantity").to_i %>
+            <% finance= invoice.drop.order.finance %>
+            <% returns= invoice.drop.order.returns %>
+            <% discount= invoice.drop.order.customer.discount %>
+            <% terms= avcustomer.to_f * discount.to_f / 100  %>
+            <% financing= avcustomer.to_f * finance.to_f / 100  %>
+            <% returning= avcustomer.to_f * returns.to_f / 100  %>
+            <% gprofit= avcustomer.to_f - avfactory.to_f %>
+            <% nprofit= avcustomer.to_f - terms.to_f - financing.to_f - returning.to_f - avfactory.to_f %>
+          <table>
+                <tr><td>Customer:</td><td class="align_right"><%= number_with_precision avcustomer, :precision => 2, :delimiter => ',' %></td></tr>
+                <tr><td>Factory:</td><td class="align_right">-<%= number_with_precision avfactory, :precision => 2, :delimiter => ',' %></td></tr>
+                <tr><td><strong>Gross Profit:</strong></td><td class="align_right"><strong><%= number_with_precision gprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+                <tr><td>Discount (<%= number_with_precision invoice.drop.order.customer.discount, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision terms, :precision => 2, :delimiter => ',' %></td></tr>
+                <tr><td>Finance (<%= number_with_precision invoice.drop.order.finance, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision financing, :precision => 2, :delimiter => ',' %></td></tr>
+                <tr><td>Returns (<%= number_with_precision invoice.drop.order.returns, :precision => 2, :delimiter => ',' %>%):</td><td class="align_right">-<%= number_with_precision returning, :precision => 2, :delimiter => ',' %></td></tr>
+                <tr><td><strong>Net Profit:</strong></td><td class="align_right"><strong><%= number_with_precision nprofit, :precision => 2, :delimiter => ',' %></strong></td></tr>
+          </table>
+      </div>
+    </td>
+    <td><%= invoice.drop.order.factory.name %></td>
+    <td><%= invoice.factory_invoice %></td>
+    <% if invoice.drop.order.currency == 'gbp' %>
+        <td>£<%= number_with_precision totalfact, :precision => 2, :delimiter => ','  %></td>
+        <td>-</td>
+        <td>-</td>
+    <% elsif invoice.drop.order.currency == 'usd' %>
+        <td>-</td>
+        <td>$<%= number_with_precision totalfact, :precision => 2, :delimiter => ','  %></td>
+        <td>-</td>
+    <% elsif invoice.drop.order.currency == 'eur' %>
+        <td>-</td>
+        <td>-</td>
+        <td>€<%= number_with_precision totalfact, :precision => 2, :delimiter => ','  %></td>
+    <% end %>
+    <td><%= invoice.cartoons %></td>
+    <td><%= invoice.drop.items.sum("quantity") %></td>
+    <td><%= invoice.gross %></td>
+  <% end %>
+  </tr>
+</table>
+
+
+
+
+
+
