@@ -1,4 +1,7 @@
-<h1 class="float_left">Home</h1>
+<div class="float_left">
+<h1>Home</h1>
+
+</div>
 
 
 <div class = "align_right">
@@ -26,6 +29,7 @@
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Find Invoice", name: nil %>
 <% end %>
+    <br /><%= link_to "Advanced Search", search_index_path %>
   <% end %>
 </div>
 <div class="clear"></div>

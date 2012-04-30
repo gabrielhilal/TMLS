@@ -2,18 +2,19 @@ class Invoice < ActiveRecord::Base
   belongs_to :drop
   belongs_to :bank
 
-  attr_accessible :cartoons, :cubic, :date, :drop_id, :gross, :hts, :net, :number, :paid, :factory_invoice, :vat, :bank_id
+  attr_accessible :bank_id, :cartoons, :cubic, :date, :drop_id, :factory_invoice, :gross, :hts, :net, :number, :paid, :vat
   default_scope :order => "date, number"
 
-  validates :cartoons, :presence => true
-  validates :cubic,    :presence => true
-  validates :date,     :presence => true
-  validates :drop_id,  :presence => true
-  validates :gross,    :presence => true
-  validates :net,      :presence => true
-  validates :number,   :presence => true
-  validates :vat,      :presence => true
-  validates :bank_id,  :presence => true
+  validates :drop_id,   :presence => true
+  validates :bank_id,   :presence => true
+  validates :number,    :uniqueness => { :case_sensitive => false },
+                        :presence => true
+  validates :date,      :presence => true
+  validates :cartoons,  :presence => true
+  validates :gross,     :presence => true
+  validates :net,       :presence => true
+  validates :cubic,     :presence => true
+  validates :vat,       :presence => true
 
   def self.search(search)
     if search
@@ -22,5 +23,4 @@ class Invoice < ActiveRecord::Base
       find(:all)
     end
   end
-
 end

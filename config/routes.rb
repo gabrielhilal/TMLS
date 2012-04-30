@@ -1,7 +1,5 @@
 TMLS::Application.routes.draw do
 
-get "search/index"
-
 resources :factories
 
 resources :banks
@@ -23,6 +21,10 @@ resources :invoices
 resources :users
 
 resources :sessions
+
+get "reports/index"
+
+get "search/index"
 
 post "orders/acknow"
 post "orders/requestacknow"

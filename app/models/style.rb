@@ -1,17 +1,17 @@
 class Style < ActiveRecord::Base
   has_many :items
-  attr_accessible :image, :style, :construction
+
+  attr_accessible :construction, :image, :style
   mount_uploader :image, ImageUploader
   default_scope :order => "style, construction"
 
-
-  validates :style,            :presence => true,
-                               :uniqueness => {:scope => :construction, :message => "/ Construction combination has already been taken"}
-  validates :construction,     :presence => true
-  validates :image,            :presence => true
+  validates :style,           :presence => true,
+                              :uniqueness => {:scope => :construction, :message => "/ Construction combination has already been taken"}
+  validates :construction,    :presence => true
+  validates :image,           :presence => true
 
   def dropdown
-      "#{style} | #{construction}"
+    "#{style} | #{construction}"
   end
 
   def self.search(search)
@@ -21,5 +21,4 @@ class Style < ActiveRecord::Base
       find(:all)
     end
   end
-
 end

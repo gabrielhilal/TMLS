@@ -1,17 +1,16 @@
 class User < ActiveRecord::Base
   belongs_to :factory
-  attr_accessible :email, :password, :password_confirmation, :department, :name, :admin, :factory_id
+
+  attr_accessible :admin, :department, :email, :factory_id, :name, :password, :password_confirmation
   has_secure_password
 
-  #email_regex reference: Ruby on Rails Tutorial-Learn Rails by Example (Michael Hartl)-http://ruby.railstutorial.org/
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  validates :email,       :presence => true,
-                          :format   => { :with => email_regex },
-                          :uniqueness => { :case_sensitive => false }
-  validates :department,  :presence => true
-  validates :name,        :presence => true
+  validates :factory_id,  :presence => true
+  validates :name,        :uniqueness => { :case_sensitive => false },
+                          :presence => true
+  validates :email,       :uniqueness => { :case_sensitive => false },
+                          :presence => true,
+                          :format   => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password,    :presence => true
-
+  validates :department,  :presence => true
 end
 

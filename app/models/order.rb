@@ -2,17 +2,18 @@ class Order < ActiveRecord::Base
   belongs_to :factory
   belongs_to :customer
   has_many :drops
-  attr_accessible :comments, :currency, :date, :number, :customer_id, :factory_id, :returns, :finance
+
+  attr_accessible :comments, :currency, :customer_id, :date, :factory_id, :number, :returns, :finance
   default_scope :order => "customer_id, number"
 
-  validates :customer_id,  :presence => true
-  validates :factory_id,   :presence => true
-  validates :number,       :presence => true,
-                           :uniqueness => { :case_sensitive => false }
-  validates :date,         :presence => true
-  validates :currency,     :presence => true
-  validates :returns,      :presence => true
-  validates :finance,      :presence => true
+  validates :customer_id,   :presence => true
+  validates :factory_id,    :presence => true
+  validates :number,        :uniqueness => { :case_sensitive => false },
+                            :presence => true
+  validates :date,          :presence => true
+  validates :currency,      :presence => true
+  validates :returns,       :presence => true
+  validates :finance,       :presence => true
 
   def self.search(search)
     if search
@@ -44,5 +45,4 @@ class Order < ActiveRecord::Base
       'error'
     end
   end
-
 end

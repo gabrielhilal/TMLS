@@ -5,24 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Bank.delete_all
-Bank.create(name: 'Fortis Bank SA/NV - USD', account: '43518003', sort_code: '40-52-62',
-            bic: 'bic bank 1', iban: 'GB49 GEBA 4052 6243 5180 03', swift: 'GEBAGB23',
-            notice: 'This debt has been assigned to and purchased by Fortis Commercial Finance Limited (Fortis)
-            with whom we have an invoice finance agreement.
-            Payments should be made to this company as trustees for Fortis.',
-            address: 'Camomile Court
-            23 Camomile Street
-            London EC3 7PP')
-Bank.create(name: 'Fortis Bank SA/NV -GBP', account: '43518002', sort_code: '40-52-62',
-            bic: 'bic bank 2', iban: 'GB49 GEBA 4052 6243 5180 02', swift: 'GEBAGB22',
-            notice: 'This debt has been assigned to and purchased by Fortis Commercial Finance Limited (Fortis)
-            with whom we have an invoice finance agreement.
-            Payments should be made to this company as trustees for Fortis.',
-            address: 'Camomile Court
-            23 Camomile Street
-            London EC3 7PP')
-# . . .
+
 Customer.delete_all
 Customer.create(name: 'Customer 1', address1: '32 North end Road', address2: 'West Kensington', city: 'London',
                 postcode: 'W14 0SH', country: 'UK', contact: 'John', email: 'customer1@gmail.com', telephone: '02098736734',
@@ -58,5 +41,22 @@ User.create(name: 'accounts', department: 'Accounts', email: 'accounts@gmail.com
 User.create(name: 'factory1', department: 'Factory', email: 'factory1@gmail.com', factory_id: '1', password: '123', admin: '0')
 User.create(name: 'factory2', department: 'Factory', email: 'factory2@gmail.com', factory_id: '2', password: '123', admin: '0')
 
-
+Bank.delete_all
+Bank.create(name: 'Fortis Bank SA/NV - USD', account: '43518003', sort_code: '40-52-62',
+            bic: 'bic bank 1', iban: 'GB49 GEBA 4052 6243 5180 03', swift: 'GEBAGB23',
+            notice: 'This debt has been assigned to and purchased by Fortis Commercial Finance Limited (Fortis)
+            with whom we have an invoice finance agreement.
+            Payments should be made to this company as trustees for Fortis.',
+            address: 'Camomile Court
+            23 Camomile Street
+            London EC3 7PP')
+Bank.create(name: 'Fortis Bank SA/NV -GBP', account: '43518002', sort_code: '40-52-62',
+            bic: 'bic bank 2', iban: 'GB49 GEBA 4052 6243 5180 02', swift: 'GEBAGB22',
+            notice: 'This debt has been assigned to and purchased by Fortis Commercial Finance Limited (Fortis)
+            with whom we have an invoice finance agreement.
+            Payments should be made to this company as trustees for Fortis.',
+            address: 'Camomile Court
+            23 Camomile Street
+            London EC3 7PP')
+# . . .
 

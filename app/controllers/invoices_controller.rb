@@ -13,6 +13,7 @@ class InvoicesController < ApplicationController
     @order = @drop.order
     @invoice = @drop.build_invoice
     @invoice.vat ||= "20"
+    @invoice.paid ||= 0
   end
 
   def create

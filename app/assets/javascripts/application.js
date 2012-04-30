@@ -17,10 +17,10 @@
 //= require_tree .
 
 $(function (){
-    $('#order_date').datepicker();
-    $('#drop_factory_date').datepicker();
-    $('#drop_customer_date').datepicker();
-    $('#invoice_date').datepicker();
+    $('#order_date').datepicker({ dateFormat: 'D, dd M yy' });
+    $('#drop_factory_date').datepicker({ dateFormat: 'D, dd M yy' });
+    $('#drop_customer_date').datepicker({ dateFormat: 'D, dd M yy' });
+    $('#invoice_date').datepicker({ dateFormat: 'D, dd M yy' });
 });
 
 

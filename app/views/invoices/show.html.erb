@@ -2,7 +2,11 @@
   <br /><br />
   <% unless current_user.department == "Commercial" %>
   <p class="align_right"><%= link_to "edit invoice", edit_invoice_path %> |
-    <%= link_to "delete invoice", @invoice, confirm: 'Invoice ' + @invoice.number.to_s + ' will be deleted! Are you sure you want to delete it?', method: :delete %></p>
+    <%= link_to "delete invoice", @invoice, confirm: 'Invoice ' + @invoice.number.to_s + ' will be deleted! Are you sure you want to delete it?', method: :delete %> |
+    <input type="button"
+        onClick="window.print()"
+        value="Print Invoice"/>
+  </p>
   <% end %>
   <p class="button_invoice" style="float: left;"><%= link_to "Return to Order", order_path(@invoice.drop.order), :method=> :get %></p>
   <div class="clear"></div>

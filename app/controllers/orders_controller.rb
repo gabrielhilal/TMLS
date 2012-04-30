@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :factory, :only => [ :create, :destroy, :edit, :new, :update ]
+  before_filter :factory, :only => [ :create, :destroy, :edit, :new, :edit, :update ]
   def index
     @title = "Orders"
     if current_user.department == "Factory"

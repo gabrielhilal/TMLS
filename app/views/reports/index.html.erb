@@ -1,0 +1,175 @@
+<h1>Profit Report</h1>
+
+<%= form_tag reports_index_path, method: :get do %>
+
+    <table class="search">
+      <tr>
+        <td><%= label_tag :customer %></td>
+        <td><%= select_tag(:customer, options_for_select(Customer.all.collect {|f| [f.name, f.id]}.insert(0,"Select Customer"))) %></td>
+      </tr>
+      <tr>
+      <tr>
+        <td><%= label_tag :factory %></td>
+        <td><%= select_tag(:factory, options_for_select(Factory.all.collect {|f| [f.name, f.id]}.insert(0,"Select Factory"))) %></td>
+      </tr>
+    </table>
+
+    <table class="search">
+      <tr>
+        <td><%= label_tag :status, 'Order Status' %></td>
+        <td><%= select_tag(:status, options_for_select([['Select Order Status','0'],['Shipped','shipped'],['Part Shipped','part_shipped'],['In Production','in_production']])) %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag :payment, 'Payment Status' %></td>
+        <td><%= select_tag(:payment, options_for_select([['Select Payment Status','0'],['Paid','paid'],['Unpaid','unpaid']])) %></td>
+      </tr>
+    </table>
+
+    <table class="search">
+      <tr>
+        <td><%= label_tag :currency %></td>
+        <td><%= select_tag(:currency, options_for_select([['Select Currency',''],['$ USD','usd'],['£ GBP','gbp'],['€ EUR','eur']])) %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag "Create Report", name: nil, :style => "font-weight: bold;" %></td>
+      </tr>
+    </table>
+
+<% end %>
+
+  <table class="nospace">
+    <tr>
+      <th rowspan="3">Customer</th>
+      <th colspan="2">Sales Invoice</th>
+      <th rowspan="3">Purchase<br />Invoice</th>
+      <th colspan="4">Purchase Order</th>
+      <th rowspan="3">Quantity</th>
+      <th colspan="8">Breakdown</th>
+      <th colspan="2">Profit</th>
+      <th rowspan="3">Payment<br />Status</th>
+    </tr>
+    <tr>
+      <th rowspan="2" style="background: #eeeeee">Date</th>
+      <th rowspan="2" style="background: #eeeeee">Number</th>
+
+      <th rowspan="2" style="background: #eeeeee">Number</th>
+      <th colspan="2" style="background: #eeeeee">Shipping Dates</th>
+      <th rowspan="2" style="background: #eeeeee">Status</th>
+
+      <th rowspan="2" style="background: #eeeeee">Customer</th>
+      <th rowspan="2" style="background: #eeeeee">Factory</th>
+      <th colspan="2" style="background: #eeeeee">Discount</th>
+      <th colspan="2" style="background: #eeeeee">Finance</th>
+      <th colspan="2" style="background: #eeeeee">Returns</th>
+
+      <th rowspan="2" style="background: #eeeeee">Per<br />Pair</th>
+      <th rowspan="2" style="background: #eeeeee">Total</th>
+    </tr>
+    <tr>
+      <th style="background: #eeeeee">Factory</th>
+      <th style="background: #eeeeee">Customer</th>
+
+      <th style="background: #eeeeee">%</th>
+      <th style="background: #eeeeee">Value</th>
+
+      <th style="background: #eeeeee">%</th>
+      <th style="background: #eeeeee">Value</th>
+
+      <th style="background: #eeeeee">%</th>
+      <th style="background: #eeeeee">Value</th>
+
+    </tr>
+    <tr>
+
+      <% if @cur == 'usd' %>
+        <% cur = "$" %>
+      <% elsif @cur == 'gbp' %>
+        <% cur = "£" %>
+      <% else @cur == 'eur' %>
+        <% cur = "€" %>
+      <% end %>
+
+    <% unless @drops.count == 0 %>
+          <% totalquantity = 0 %>
+          <% totalprofit = 0 %>
+
+      <% @drops.each do |drop| %>
+
+      <td><%= drop.order.customer.name %></td>
+         <% if drop.invoice.nil? %>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+         <% else %>
+      <td><%= drop.invoice.date.to_formatted_s(:rfc822) %></td>
+      <td><%= link_to drop.invoice.number, drop.invoice %></td>
+      <td><%= drop.invoice.factory_invoice %></td>
+         <% end %>
+      <td><%= link_to drop.order.number, drop.order %></td>
+      <td><%= drop.factory_date.to_formatted_s(:rfc822) %></td>
+      <td><%= drop.customer_date.to_formatted_s(:rfc822) %></td>
+      <td><%= drop.order.status(drop.order) %></td>
+      <td><%= drop.items.sum("quantity") %></td>
+
+              <% totalquantity = totalquantity + drop.items.sum("quantity") %>
+              <% avcustomer= drop.items.sum("customer_price * quantity").to_f / drop.items.sum("quantity").to_i %>
+              <% avfactory= drop.items.sum("factory_price * quantity").to_f / drop.items.sum("quantity").to_i %>
+              <% finance= drop.order.finance %>
+              <% returns= drop.order.returns %>
+              <% discount= drop.order.customer.discount %>
+              <% terms= avcustomer.to_f * discount.to_f / 100  %>
+              <% financing= avcustomer.to_f * finance.to_f / 100  %>
+              <% returning= avcustomer.to_f * returns.to_f / 100  %>
+              <% nprofit= avcustomer.to_f - terms.to_f - financing.to_f - returning.to_f - avfactory.to_f %>
+
+      <td><%= number_with_precision avcustomer, :precision => 2, :delimiter => ',' %></td>
+      <td><%= number_with_precision avfactory, :precision => 2, :delimiter => ',' %></td>
+      <td><%= number_with_precision drop.order.customer.discount, :precision => 2, :delimiter => ',' %></td>
+      <td>-<%= cur %><%= number_with_precision terms, :precision => 2, :delimiter => ',' %></td>
+      <td><%= number_with_precision drop.order.finance, :precision => 2, :delimiter => ',' %></td>
+      <td>-<%= cur %><%= number_with_precision financing, :precision => 2, :delimiter => ',' %></td>
+      <td><%= number_with_precision drop.order.returns, :precision => 2, :delimiter => ',' %></td>
+      <td>-<%= cur %><%= number_with_precision returning, :precision => 2, :delimiter => ',' %></td>
+      <td><%= cur %><%= number_with_precision nprofit, :precision => 2, :delimiter => ',' %></td>
+      <td><%= cur %><%= number_with_precision (nprofit*drop.items.sum("quantity")), :precision => 2, :delimiter => ','  %></td>
+              <% totalprofit = totalprofit + nprofit*drop.items.sum("quantity") %>
+           <% if drop.invoice.nil? %>
+      <td>-</td>
+           <% else %>
+             <% if drop.invoice.paid == true %>
+      <td>paid</td>
+             <% else %>
+      <td>unpaid</td>
+             <% end %>
+           <% end %>
+
+    </tr>
+      <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><strong><%= totalquantity %></strong></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td style="text-align: right" colspan="5">Average per pair: </td>
+      <td><strong><%= cur %><%= number_with_precision totalprofit/totalquantity, :precision => 2, :delimiter => ',' %></strong></td>
+      <td><strong><%= cur %><%= number_with_precision totalprofit, :precision => 2, :delimiter => ','  %></strong></td>
+    </tr>
+    <% end %>
+  </table>
+<div class="align_right">
+  <div class="noprint">
+<input type="button"
+    onClick="window.print()"
+    value="Print Report"/>
+  </div>
+</div>
+

@@ -47,6 +47,7 @@
         <li><%= link_to "List Invoices", invoices_path %></li>
       </ul>
     </li>
+
     <li><%= link_to "Banks", banks_path %>
       <ul>
         <li><%= link_to "List Banks", banks_path %></li>
@@ -55,8 +56,10 @@
         <% end %>
       </ul>
     </li>
-    <li><%= link_to "Advanced Search", search_index_path %>
+
+    <li><%= link_to "Reports", reports_index_path %>
     </li>
+
     <li class="align_right"><%= link_to "Logout", logout_path %>
     <% end %>
     <% end %>
