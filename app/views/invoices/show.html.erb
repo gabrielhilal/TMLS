@@ -95,14 +95,16 @@
       <% end %>
 
         <% if cur == '£' and @invoice.vat != 0 %>
+          <% net = @invoice.drop.items.sum("quantity * customer_price") %>
+          <% vat = @invoice.vat * 0.01 %>
           <tr>
-            <td colspan="7"></td><td style="text-align: right"><strong>TOTAL NET</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price")), :precision => 2, :delimiter => ',' %></strong></td>
+            <td colspan="7"></td><td style="text-align: right"><strong>TOTAL NET</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision net, :precision => 2, :delimiter => ',' %></strong></td>
           </tr>
           <tr>
-            <td colspan="7"></td><td style="text-align: right"><strong>VAT (<%= number_with_precision @invoice.vat, :precision => 2, :delimiter => ',' %>%)</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price") * @invoice.vat * 0.01), :precision => 2, :delimiter => ',' %></strong></td>
+            <td colspan="7"></td><td style="text-align: right"><strong>VAT (<%= number_with_precision @invoice.vat, :precision => 2, :delimiter => ',' %>%)</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision net*vat, :precision => 2, :delimiter => ',' %></strong></td>
           </tr>
           <tr>
-            <th colspan="6">TOTAL</th><th style="text-align: right"><%= @invoice.drop.items.sum("quantity") %></th><th></th><th style="text-align: right"><%= cur %><%= number_with_precision (@invoice.drop.items.sum("quantity * customer_price")+(@invoice.drop.items.sum("quantity * customer_price") * @invoice.vat * 0.01)), :precision => 2, :delimiter => ',' %></th>
+            <th colspan="6">TOTAL</th><th style="text-align: right"><%= @invoice.drop.items.sum("quantity") %></th><th></th><th style="text-align: right"><%= cur %><%= number_with_precision net + net*vat, :precision => 2, :delimiter => ',' %></th>
           </tr>
         <% else %>
           <tr>
