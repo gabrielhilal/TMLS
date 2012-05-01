@@ -29,6 +29,7 @@
     <th>VAT</th>
     <th>Total</th>
   </tr>
+    <% unless @invoices.nil? %>
     <% @invoices.each do |invoice| %>
   <tr>
             <% cust = invoice.drop.items.sum("quantity * customer_price") %>
@@ -100,6 +101,7 @@
     <td><%= invoice.gross %></td>
   <% end %>
   </tr>
+  <% end %>
 </table>
 
 
