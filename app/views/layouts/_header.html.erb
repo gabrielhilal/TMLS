@@ -57,7 +57,12 @@
       </ul>
     </li>
 
+    <% unless current_user.department == "Commercial" %>
     <li><%= link_to "Reports", reports_index_path %>
+    </li>
+    <% end %>
+
+    <li><%= link_to "Advanced Search", search_index_path %>
     </li>
 
     <li class="align_right"><%= link_to "Logout", logout_path %>

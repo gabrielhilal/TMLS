@@ -21,20 +21,53 @@ class ReportsController < ApplicationController
         @orders = Order.where("customer_id = ? AND factory_id = ?", @customer, @factory)
       end
 
-      @drops = Drop.where(:order_id => @orders)
+      if params[:status] == "shipped"
+        @temp=[]
+        Order.all.each  do |order|
+         if order.status(order) == 'Shipped'
+        @temp = @temp << order
+         end
+        end
+        @orders = @orders & @temp
 
-      #if params[:status] == "shipped"
-      #  @orders = @orders.map do |i| i.status(i)== 'Shipped' end
-      #elsif params[:status] == "part_shipped"
-      #  @orders = @orders.map do |i| if i.status(i) == 'Part Shipped'; end end
-      #elsif params[:status] == "in_production"
-      #  @orders = @orders.map do |i| if i.status(i) == 'In Production'; end end
-      #end
+      elsif params[:status] == "part_shipped"
+        @temp=[]
+        Order.all.each  do |order|
+         if order.status(order) == 'Part Shipped'
+        @temp = @temp << order
+         end
+        end
+        @orders = @orders & @temp
+
+      elsif params[:status] == "in_production"
+        @temp=[]
+        Order.all.each  do |order|
+         if order.status(order) == 'In Production'
+        @temp = @temp << order
+         end
+        end
+        @orders = @orders & @temp
+
+      end
 
       @drops = Drop.where(:order_id => @orders)
 
       if params[:payment] == "paid"
-        @invoices = Invoice.where(:paid => true, :drop_id => @drops)
+        @temp=[]
+        Invoice.all.each do |invoice|
+        if invoice.paid == true
+          @temp << invoice.drop
+        end
+        end
+        @drops = @drops & @temp
+      elsif params[:payment] == "unpaid"
+        @temp=[]
+        Invoice.all.each do |invoice|
+        if invoice.paid == false
+          @temp << invoice.drop
+        end
+        end
+        @drops = @drops & @temp
       end
     end
   end

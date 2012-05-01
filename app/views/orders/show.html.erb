@@ -142,8 +142,8 @@
         <th>Customer<br />Style</th>
         <th>Upper</th>
         <% unless current_user.department == "Factory" %>
-        <td></td>
-        <td></td>
+        <td class="noprint"></td>
+        <td class="noprint"></td>
         <% end %>
       </tr>
       <tr>
@@ -170,8 +170,8 @@
         <td><%= item.customer_style %></td>
         <td><%= item.upper %></td>
         <% unless current_user.department == "Factory" %>
-        <td><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %></td>
-        <td><%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %></td>
+        <td class="noprint"><%= link_to "edit", edit_order_drop_item_path(@order, drop, item) %></td>
+        <td class="noprint"><%= link_to "delete", order_drop_item_path(@order, drop, item), confirm: 'Item will be deleted! Are you sure you want to delete it?', method: :delete %></td>
         <% end %>
       </tr>
       <% end %>
@@ -231,6 +231,14 @@
 <% i += 1 %>
 <% end %>
   <% unless current_user.department == "Factory" %>
-  <div class="drop_line1"><%= link_to "New Drop", new_order_drop_path(@order) %></div>
+  <div class="noprint"><div class="drop_line1"><%= link_to "New Drop", new_order_drop_path(@order) %></div></div>
   <% end %>
+</div>
+
+<div class="align_right">
+  <div class="noprint">
+<input type="button"
+    onClick="window.print()"
+    value="Print Order"/>
+  </div>
 </div>
