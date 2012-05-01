@@ -26,28 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="search_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="search_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/search_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="42" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="3" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users_controller.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="3" selection-start="49" selection-end="49" vertical-scroll-proportion="0.022189349">
+            <state line="37" column="42" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.79512894">
               <folding />
             </state>
           </provider>
@@ -125,8 +107,8 @@
         <option value="$PROJECT_DIR$/app/views/layouts/_header.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/invoice.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       </list>
     </option>
   </component>
@@ -961,23 +943,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/search_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="42" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.0">
+        <state line="1" column="2" selection-start="48" selection-end="48" vertical-scroll-proportion="0.022189349">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0">
+        <state line="2" column="2" selection-start="78" selection-end="78" vertical-scroll-proportion="0.044378698">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/search_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="3" selection-start="49" selection-end="49" vertical-scroll-proportion="0.022189349">
+        <state line="37" column="42" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.79512894">
           <folding />
         </state>
       </provider>
