@@ -95,7 +95,7 @@
       <% end %>
 
         <% if cur == '£' and @invoice.vat != 0 %>
-          <% net = @invoice.drop.items.sum("quantity * customer_price") %>
+          <% net = @invoice.drop.items.sum("quantity * customer_price").to_f %>
           <% vat = (@invoice.vat) * 0.01 * net%>
           <tr>
             <td colspan="7"></td><td style="text-align: right"><strong>TOTAL NET</strong></td><td style="text-align: right"><strong><%= cur %><%= number_with_precision net, :precision => 2, :delimiter => ',' %></strong></td>
