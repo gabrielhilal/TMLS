@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
 
   def index
     @title = "Invoices"
-    @invoices = Invoice.all
+    @invoices = Invoice.search(params[:search])
   end
 
   def new
