@@ -22,9 +22,9 @@ resources :users
 
 resources :sessions
 
-resources :reports
+get "reports/index"
 
-resources :search
+get "search/index"
 
 post "orders/acknow"
 post "orders/requestacknow"
