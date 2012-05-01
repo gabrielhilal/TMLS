@@ -59,7 +59,7 @@
     <td><%= invoice.drop.order.customer.name %></td>
     <td class="showhim"><%= link_to invoice.drop.order.number, order_path(invoice.drop.order) %>
       <div class="showme">
-            <% avcustomer= invoice.drop.items.sum("customer_price * quantity") / invoice.drop.items.sum("quantity").to_i %>
+            <% avcustomer= invoice.drop.items.sum("customer_price * quantity").to_f / invoice.drop.items.sum("quantity").to_i %>
             <% avfactory= invoice.drop.items.sum("factory_price * quantity") / invoice.drop.items.sum("quantity").to_i %>
             <% finance= invoice.drop.order.finance %>
             <% returns= invoice.drop.order.returns %>
