@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :admin, only: [:new, :create, :index, :destroy ]
+  #before_filter :admin, only: [:new, :create, :index, :destroy ]
 
   def index
     @title = "Manage Users"
