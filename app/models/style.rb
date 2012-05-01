@@ -16,7 +16,7 @@ class Style < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ["style LIKE ? OR construction LIKE ?", "%#{search}%", "%#{search}%"])
+      find(:all, :conditions => ["style ILIKE ? OR construction ILIKE ?", "%#{search}%", "%#{search}%"])
     else
       find(:all)
     end

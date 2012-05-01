@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ["number LIKE ? OR date LIKE ?", "%#{search}%", "%#{search}%"])
+      find(:all, :conditions => ["number ILIKE ? OR date ILIKE ?", "%#{search}%", "%#{search}%"])
     else
       find(:all)
     end
