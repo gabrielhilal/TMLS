@@ -32,8 +32,7 @@
     <% @invoices.each do |invoice| %>
   <tr>
             <% cust = invoice.drop.items.sum("quantity * customer_price") %>
-            <% temp = cust * (invoice.vat) %>
-            <% vat = temp / 100 %>
+            <% vat = cust * (invoice.vat) * 0.01 %>
             <% totalcust = cust + vat %>
             <% totalfact = invoice.drop.items.sum("quantity * factory_price") %>
     <td><%= invoice.date.to_formatted_s(:rfc822) %></td>
