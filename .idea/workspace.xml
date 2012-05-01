@@ -65,7 +65,7 @@
       <file leaf-file-name="invoices_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/invoices_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="757" selection-end="757" vertical-scroll-proportion="0.0">
+            <state line="4" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,7 +74,7 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="314" selection-start="5094" selection-end="5094" vertical-scroll-proportion="0.4878049">
+            <state line="104" column="317" selection-start="5506" selection-end="5506" vertical-scroll-proportion="0.4878049">
               <folding />
             </state>
           </provider>
@@ -929,23 +929,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/invoices_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="66" selection-start="2700" selection-end="2700" vertical-scroll-proportion="0.4878049">
+        <state line="4" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/invoices_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="757" selection-end="757" vertical-scroll-proportion="0.0">
+        <state line="66" column="66" selection-start="2700" selection-end="2700" vertical-scroll-proportion="-22.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="314" selection-start="5094" selection-end="5094" vertical-scroll-proportion="0.4878049">
+        <state line="104" column="317" selection-start="5506" selection-end="5506" vertical-scroll-proportion="0.4878049">
           <folding />
         </state>
       </provider>
