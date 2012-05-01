@@ -74,7 +74,7 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="78" selection-start="2296" selection-end="2301" vertical-scroll-proportion="0.36585367">
+            <state line="62" column="81" selection-start="2428" selection-end="2428" vertical-scroll-proportion="0.42682928">
               <folding />
             </state>
           </provider>
@@ -945,7 +945,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="78" selection-start="2296" selection-end="2301" vertical-scroll-proportion="0.36585367">
+        <state line="62" column="81" selection-start="2428" selection-end="2428" vertical-scroll-proportion="0.42682928">
           <folding />
         </state>
       </provider>
