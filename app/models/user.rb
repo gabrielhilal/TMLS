@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   attr_accessible :admin, :department, :email, :factory_id, :name, :password, :password_confirmation
   has_secure_password
 
-  validates :factory_id,  :presence => true
   validates :name,        :uniqueness => { :case_sensitive => false },
                           :presence => true
   validates :email,       :uniqueness => { :case_sensitive => false },
