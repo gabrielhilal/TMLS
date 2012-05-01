@@ -6,6 +6,12 @@ resources :banks
 
 resources :styles
 
+resources :invoices
+
+resources :users
+
+resources :sessions
+
 resources :customers do
   resources :consignees
 end
@@ -15,12 +21,6 @@ resources :orders do
    resources :items
  end
 end
-
-resources :invoices
-
-resources :users
-
-resources :sessions
 
 get "reports/index"
 
