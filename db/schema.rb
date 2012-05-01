@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120331010550) do
   end
 
   create_table "invoices", :force => true do |t|
-    t.integer  "number"
+    t.string   "number"
     t.date     "date"
     t.integer  "cartoons"
     t.decimal  "gross",           :precision => 7, :scale => 4

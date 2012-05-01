@@ -32,7 +32,7 @@
     <% @invoices.each do |invoice| %>
   <tr>
             <% cust = invoice.drop.items.sum("quantity * customer_price") %>
-            <% vat = cust*invoice.vat.to_f/100 %>
+            <% vat = cust*invoice.vat/100 %>
             <% totalcust = cust + vat %>
             <% totalfact = invoice.drop.items.sum("quantity * factory_price") %>
     <td><%= invoice.date.to_formatted_s(:rfc822) %></td>
@@ -59,16 +59,16 @@
     <td><%= invoice.drop.order.customer.name %></td>
     <td class="showhim"><%= link_to invoice.drop.order.number, order_path(invoice.drop.order) %>
       <div class="showme">
-            <% avcustomer= invoice.drop.items.sum("customer_price * quantity").to_f / invoice.drop.items.sum("quantity").to_i %>
-            <% avfactory= invoice.drop.items.sum("factory_price * quantity").to_f / invoice.drop.items.sum("quantity").to_i %>
+            <% avcustomer= invoice.drop.items.sum("customer_price * quantity") / invoice.drop.items.sum("quantity").to_i %>
+            <% avfactory= invoice.drop.items.sum("factory_price * quantity") / invoice.drop.items.sum("quantity").to_i %>
             <% finance= invoice.drop.order.finance %>
             <% returns= invoice.drop.order.returns %>
             <% discount= invoice.drop.order.customer.discount %>
-            <% terms= avcustomer.to_f * discount.to_f / 100  %>
-            <% financing= avcustomer.to_f * finance.to_f / 100  %>
-            <% returning= avcustomer.to_f * returns.to_f / 100  %>
-            <% gprofit= avcustomer.to_f - avfactory.to_f %>
-            <% nprofit= avcustomer.to_f - terms.to_f - financing.to_f - returning.to_f - avfactory.to_f %>
+            <% terms= avcustomer * discount / 100  %>
+            <% financing= avcustomer * finance / 100  %>
+            <% returning= avcustomer * returns / 100  %>
+            <% gprofit= avcustomer - avfactory %>
+            <% nprofit= avcustomer - terms - financing - returning - avfactory %>
           <table>
                 <tr><td>Customer:</td><td class="align_right"><%= number_with_precision avcustomer, :precision => 2, :delimiter => ',' %></td></tr>
                 <tr><td>Factory:</td><td class="align_right">-<%= number_with_precision avfactory, :precision => 2, :delimiter => ',' %></td></tr>
