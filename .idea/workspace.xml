@@ -74,7 +74,7 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="49" selection-start="4582" selection-end="4582" vertical-scroll-proportion="0.30487806">
+            <state line="98" column="33" selection-start="4566" selection-end="4566" vertical-scroll-proportion="0.42682928">
               <folding />
             </state>
           </provider>
@@ -929,6 +929,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="66" selection-start="2700" selection-end="2700" vertical-scroll-proportion="2.0731707">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/invoices_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
@@ -936,16 +943,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="66" selection-start="2700" selection-end="2700" vertical-scroll-proportion="-22.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="49" selection-start="4582" selection-end="4582" vertical-scroll-proportion="0.30487806">
+        <state line="98" column="33" selection-start="4566" selection-end="4566" vertical-scroll-proportion="0.42682928">
           <folding />
         </state>
       </provider>
