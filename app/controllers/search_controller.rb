@@ -21,17 +21,17 @@ class SearchController < ApplicationController
 
       @drops = Drop.where(:order_id => @orders)
 
-      @styles = Style.where("style ILIKE ? ", "%#{params[:style]}%")
-      @constructions = Style.where("construction ILIKE ? ", "%#{params[:construction]}%")
+      @styles = Style.where("style LIKE ? ", "%#{params[:style]}%")
+      @constructions = Style.where("construction LIKE ? ", "%#{params[:construction]}%")
 
       @items = Item.where(:drop_id => @drops)
       @items = @items.where(:style_id => @styles)
       @items = @items.where(:style_id => @constructions)
       unless params[:c_style] == ''
         if @items.nil?
-          @items = Item.where("customer_style ILIKE ? ", "%#{params[:c_style]}%")
+          @items = Item.where("customer_style LIKE ? ", "%#{params[:c_style]}%")
         else
-          @items = @items.where("customer_style ILIKE ? ", "%#{params[:c_style]}%")
+          @items = @items.where("customer_style LIKE ? ", "%#{params[:c_style]}%")
         end
       end
     end
