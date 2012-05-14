@@ -1,6 +1,6 @@
 # Gabrie Hilal - Final Year Project
 
-Application available at: [*tmls.kerokuapp.com*](tmls.kerokuapp.com)
+Application available at: [*http://tmls.kerokuapp.com*](http://tmls.kerokuapp.com)
 
 Levels of Access - Login Details:
 
@@ -23,5 +23,5 @@ Levels of Access - Login Details:
 </table>
 
 
-Report available in PDF at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pd)
+Report available in PDF at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf)
 
