@@ -1,6 +1,6 @@
 # Gabrie Hilal - Final Year Project
 
-Application available at: [*http://tmls.kerokuapp.com*](http://tmls.kerokuapp.com)
+Application available at: [*http://tmls.herokuapp.com*](http://tmls.herokuapp.com)
 
 Levels of Access - Login Details:
 
