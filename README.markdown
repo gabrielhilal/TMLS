@@ -24,6 +24,6 @@ Levels of Access - Login Details:
 </table>
 
 
-Project's Report available at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf)
+Project's Report available at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf) <br />
 Poster Presentation available at: [*http://www.gabrielhilal.com/FYP/Poster.pdf*](http://www.gabrielhilal.com/FYP/Poster.pdf)
 
