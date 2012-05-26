@@ -2,7 +2,7 @@
 
 ## Gabriel Delucis Hilal
 
-<strong>Technology:</strong> Ruby on Rails
+<strong>Technology:</strong> Ruby on Rails | HTML5 | CSS3 | jQuery
 
 <strong>Summary:</strong> Final Year Project for BSc Information Systems (Internet Business) at [*Kingston University*](http://www.kingston.ac.uk).
 
