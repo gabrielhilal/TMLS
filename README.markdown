@@ -1,10 +1,13 @@
-# Final Year Project (FYP)
-## Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
-### Gabriel Delucis Hilal - K0935109
-Application available at: [*http://tmls.herokuapp.com*](http://tmls.herokuapp.com)
+# Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
+## Gabriel Delucis Hilal
+
+<strong>Technology:</strong> Ruby on Rails
+
+<strong>Summary:</strong> Final Year Project for BSc Information Systems (Internet Business) at [*Kingston University*](http://www.kingston.ac.uk).
+
+<strong>Application available at:</strong> [*http://tmls.herokuapp.com*](http://tmls.herokuapp.com)
 
 Levels of Access - Login Details:
-
 <table>
   <tr>
     <th>Level</th><th>Username</th><th>Password</th>
@@ -23,7 +26,6 @@ Levels of Access - Login Details:
   </tr>
 </table>
 
-
-Project's Report available at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf) <br />
-Poster Presentation available at: [*http://www.gabrielhilal.com/FYP/Poster.pdf*](http://www.gabrielhilal.com/FYP/Poster.pdf)
+<strong>Report available at:</strong> [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf) <br />
+<strong>Poster Presentation available at:</strong> [*http://www.gabrielhilal.com/FYP/Poster.pdf*](http://www.gabrielhilal.com/FYP/Poster.pdf)
 
