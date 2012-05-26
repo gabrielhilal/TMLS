@@ -1,5 +1,6 @@
-# Gabrie Hilal - Final Year Project
-
+# Final Year Project (FYP)
+## Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
+### Gabriel Delucis Hilal - K0935109
 Application available at: [*http://tmls.herokuapp.com*](http://tmls.herokuapp.com)
 
 Levels of Access - Login Details:
@@ -23,5 +24,6 @@ Levels of Access - Login Details:
 </table>
 
 
-Report available in PDF at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf)
+Project's Report available at: [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf)
+Poster Presentation available at: [*http://www.gabrielhilal.com/FYP/Poster.pdf*](http://www.gabrielhilal.com/FYP/Poster.pdf)
 
