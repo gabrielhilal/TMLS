@@ -1,5 +1,5 @@
 # Web Based Information System for STUDIO TMLS
-## Adapting to Organisational Change
+### Adapting to Organisational Change
 
 ## Gabriel Delucis Hilal
 
