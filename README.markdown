@@ -1,4 +1,5 @@
-### Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
+### Web Based Information System for STUDIO TMLS:
+####Adapting to Organisational Change
 
 <strong>Technology:</strong> Ruby on Rails | HTML5 | CSS3 | jQuery
 
