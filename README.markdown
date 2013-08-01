@@ -1,6 +1,4 @@
-# Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
-
-## Gabriel Delucis Hilal
+## Web Based Information System for STUDIO TMLS: Adapting to Organisational Change
 
 <strong>Technology:</strong> Ruby on Rails | HTML5 | CSS3 | jQuery
 
@@ -26,7 +24,3 @@ Levels of Access - Login Details:
     <td>Factory</td><td>factory1</td><td>factory1</td>
   </tr>
 </table>
-
-<strong>Report available at:</strong> [*http://www.gabrielhilal.com/FYP/Report.pdf*](http://www.gabrielhilal.com/FYP/Report.pdf) <br />
-<strong>Poster Presentation available at:</strong> [*http://www.gabrielhilal.com/FYP/Poster.pdf*](http://www.gabrielhilal.com/FYP/Poster.pdf)
-
