@@ -4,7 +4,7 @@
     <list default="true" id="ae15d684-76ef-4c93-b5f8-18ae9c6b6560" name="Default" comment="" />
     <ignored path="TMLS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/README.markdown" changelist="ae15d684-76ef-4c93-b5f8-18ae9c6b6560" time="1375366970160" ignored="false" />
+    <file path="/README.markdown" changelist="ae15d684-76ef-4c93-b5f8-18ae9c6b6560" time="1375367069531" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +31,7 @@
       <file leaf-file-name="README.markdown" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.markdown">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="8" selection-start="800" selection-end="800" vertical-scroll-proportion="0.73880595">
+            <state line="0" column="3" selection-start="3" selection-end="3" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -936,7 +936,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.markdown">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="8" selection-start="800" selection-end="800" vertical-scroll-proportion="0.73880595">
+        <state line="0" column="3" selection-start="3" selection-end="3" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
