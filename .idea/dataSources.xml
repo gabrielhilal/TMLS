@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="0">
-    <data-source source="LOCAL" name="Rails TMLS: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="540c83d8-c3c8-47be-bad7-e1bcd31e1a1b">
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+  <component name="DataSourceManagerImpl" format="xml" hash="2353929450">
+    <data-source source="LOCAL" name="Rails TMLS: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="3646c1fc-2a54-4f7b-a9b7-4b56808f45d3">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:gabrielhilal_test</jdbc-url>
+      <user-name>gabrielhilal</user-name>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/Library/Preferences/RubyMine32/jdbc-drivers/zentus-sqlite-license.txt</url>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine40/jdbc-drivers/postgresql-driver-license.txt</url>
         </library>
         <library>
-          <url>jar://$USER_HOME$/Library/Preferences/RubyMine32/jdbc-drivers/sqlitejdbc-v056.jar!/</url>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine40/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails TMLS: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="04c3b9bd-38bc-475c-8880-bc4b159b015b">
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
+    <data-source source="LOCAL" name="Rails TMLS: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="c5e24a08-6562-4cee-8497-582fab6c1bae">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:tmls_production</jdbc-url>
+      <user-name>gabrielhilal</user-name>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/Library/Preferences/RubyMine32/jdbc-drivers/zentus-sqlite-license.txt</url>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine40/jdbc-drivers/postgresql-driver-license.txt</url>
         </library>
         <library>
-          <url>file://$USER_HOME$/Library/Preferences/RubyMine32/jdbc-drivers/sqlitejdbc-v056.jar</url>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine40/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
         </library>
       </libraries>
     </data-source>
