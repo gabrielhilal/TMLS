@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.12'
+ruby '2.0.0'
 gem "carrierwave"
 gem 'rmagick'
 gem 'rails3-jquery-autocomplete'
@@ -9,7 +10,6 @@ gem 'rails3-jquery-autocomplete'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # for deployment on Heroku
-gem "heroku"
 
 group :production do
   gem 'pg'
