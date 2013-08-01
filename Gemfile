@@ -13,7 +13,6 @@ gem "heroku"
 
 group :production do
   gem 'pg'
-  gem 'thin'
 end
 
 group :development, :test do
